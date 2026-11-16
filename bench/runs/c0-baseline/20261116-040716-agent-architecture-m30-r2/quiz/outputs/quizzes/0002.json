@@ -1,0 +1,68 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows and agents: who owns the control flow?",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "What most clearly separates an agent from a workflow in a system built around a language model?",
+      "options": [
+        {"id": "a", "text": "An agent calls a language model, while a workflow never uses one"},
+        {"id": "b", "text": "In an agent the model chooses the steps; in a workflow code does"},
+        {"id": "c", "text": "An agent can call tools like a calendar, while a workflow cannot"},
+        {"id": "d", "text": "An agent suits harder tasks and so always gives better answers"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "In a makerspace assistant, every time a student asks about a machine, our code searches the manuals, pastes the top three passages into a prompt, and makes one model call to write the answer. How should this design be described?",
+      "options": [
+        {"id": "a", "text": "An agent, because it calls a model and also uses a search tool"},
+        {"id": "b", "text": "An agent, because the model writes the final answer to the student"},
+        {"id": "c", "text": "A workflow, because the model picks which search tool to use"},
+        {"id": "d", "text": "A workflow, because our code fixes every step ahead of time"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "short",
+      "objective": "O4",
+      "stem": "The design in the previous item is changed: the model may now call search_manuals zero, one or several times, or call check_calendar, in whatever order it decides, before it answers. In one or two words, who now owns the control flow: the model or our code?"
+    },
+    {
+      "id": "q4",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "Design A is a fixed workflow that makes exactly 2 model calls for every request. Design B is an agent that makes 5 model calls per request on average. Assume every call costs the same. Over 500 requests, how many more model calls does B make than A, on average?",
+      "unit": "calls"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Which part of the makerspace assistant is the best candidate for an agent rather than a fixed workflow?",
+      "options": [
+        {"id": "a", "text": "Open questions like \"Can I make a 40 cm bracket this week, and on which machine?\""},
+        {"id": "b", "text": "Booking confirmation: check the slot, save the booking, send the same email"},
+        {"id": "c", "text": "Weekly reminder: look up tomorrow's bookings and message each student"},
+        {"id": "d", "text": "Safety sign-off: check the training record, then allow or refuse the booking"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Which condition is the strongest reason to choose a fixed workflow over an agent for one task?",
+      "options": [
+        {"id": "a", "text": "The task is important, so it deserves the most flexible design"},
+        {"id": "b", "text": "The task uses tools, and only an agent is able to call tools"},
+        {"id": "c", "text": "The steps and their order are known ahead and repeat each time"},
+        {"id": "d", "text": "The task is simple enough that no language model is needed"}
+      ]
+    }
+  ]
+}

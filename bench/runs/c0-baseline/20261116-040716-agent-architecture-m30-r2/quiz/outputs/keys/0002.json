@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The difference is who owns the control flow: in a workflow, predefined code paths decide the steps; in an agent, the model decides its own steps and tool use (Anthropic, Building effective agents). Workflows can use models (a) and tools (c), and an agent is not automatically better (d).",
+      "distractors": {"a": "M9", "c": "M7", "d": "M8"}
+    },
+    {
+      "id": "q2",
+      "answer": "d",
+      "rationale": "The code fixes the sequence (search, paste, one call), and the model only writes text at the end, so this is a workflow. Using a model or a search tool does not make a system an agent (a, b), and here the model picks no tool (c).",
+      "distractors": {"a": "M7", "b": "M7", "c": "M7"}
+    },
+    {
+      "id": "q3",
+      "answer": "the model",
+      "accepted": ["model", "the language model", "language model", "the llm", "llm", "it is the model", "now the model"],
+      "rationale": "The model now chooses whether to call tools, which ones and in what order, so it owns the control flow and the design is an agent. Answering 'our code' shows the belief that having tools or code around the model keeps the code in charge (M7)."
+    },
+    {
+      "id": "q4",
+      "answer": 1500,
+      "tolerance": 0,
+      "rationale": "A makes 2 x 500 = 1,000 calls and B makes 5 x 500 = 2,500, so B makes 1,500 more. The point for O4: a fixed workflow has a predictable, smaller cost, which matters under the sponsor's budget. Answering 3 forgets to multiply by 500."
+    },
+    {
+      "id": "q5",
+      "answer": "a",
+      "rationale": "An open question needs steps that cannot be listed ahead: the assistant may need the manuals, the machine sizes and the calendar, in an order that depends on what it finds. b, c and d each follow the same known steps every time, so a fixed workflow is cheaper and more predictable. Picking one of them treats every tool-using task as an agent task (M7).",
+      "distractors": {"b": "M7", "c": "M7", "d": "M7"}
+    },
+    {
+      "id": "q6",
+      "answer": "c",
+      "rationale": "When the steps and their order are known ahead and repeat, a fixed workflow is simpler, cheaper and more predictable than an agent. Importance alone is no reason for flexibility (a), workflows can call tools (b), and a workflow may still use a model for some steps (d).",
+      "distractors": {"a": "M8", "b": "M7", "d": "M9"}
+    }
+  ]
+}

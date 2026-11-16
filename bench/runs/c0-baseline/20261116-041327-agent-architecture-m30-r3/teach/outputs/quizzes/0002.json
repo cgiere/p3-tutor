@@ -1,0 +1,56 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in the makerspace assistant",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "On Monday a student tells the assistant, \"I prefer mornings.\" Nothing is saved when the chat ends. On Tuesday the student opens a new chat and asks for a booking. What does the model know about the preference?",
+      "options": [
+        {"id": "a", "text": "It still knows, because the model learned it during Monday's chat"},
+        {"id": "b", "text": "It knows only if the program looks the preference up in storage"},
+        {"id": "c", "text": "It does not know, because nothing in the new context mentions it"},
+        {"id": "d", "text": "It knows, because the context window keeps old chats for a week"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "An agent run has three model calls. The system prompt and tool descriptions are 1,000 tokens. Call 1 sees only those. The model writes a 40-token tool request, and the 500-token result is added, then call 2 runs. The model writes another 40-token request, and a 200-token result is added, then call 3 runs. Each call's input is everything so far. How many input tokens are billed across all three calls?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "The assistant uses a search_manuals tool over 400 pages of manuals. Who compares the student's question with the manual chunks, and what does the model then see?",
+      "options": [
+        {"id": "a", "text": "The program searches; the model sees only the few chunks returned"},
+        {"id": "b", "text": "The model searches; it sees all 400 pages and picks the best one"},
+        {"id": "c", "text": "The program searches; the model sees all 400 pages and the matches"},
+        {"id": "d", "text": "The model searches; it sees only the few chunks it remembers"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Which fact is the best candidate to save as a note between sessions, so the assistant can load it for that student next time?",
+      "options": [
+        {"id": "a", "text": "The full text of the student's whole chat from today's session"},
+        {"id": "b", "text": "The exact tool results the calendar returned during today's session"},
+        {"id": "c", "text": "The safety rules the assistant must follow in every conversation"},
+        {"id": "d", "text": "That the student passed the laser cutter training on 12 October"}
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A teammate says, \"Buy access to a model with a huge context window, and we can just put every manual in the prompt.\" Give one reason, in a sentence, why that is still a poor design for your budget."
+    }
+  ]
+}

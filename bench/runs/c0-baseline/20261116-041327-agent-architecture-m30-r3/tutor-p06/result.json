@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 17306,
+  "stop_reason": "end_turn",
+  "session_id": "aa1e9287-fd02-4889-93a7-3156e4fd9d08",
+  "total_cost_usd": 0.1150582,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 22665,
+    "cache_read_input_tokens": 64262,
+    "output_tokens": 1796,
+    "output_tokens_details": {
+      "thinking_tokens": 360
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22665,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 636,
+        "cache_read_input_tokens": 32536,
+        "cache_creation_input_tokens": 693,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 693
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1796,
+      "cacheReadInputTokens": 64262,
+      "cacheCreationInputTokens": 22665,
+      "webSearchRequests": 0,
+      "costUSD": 0.1150582,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 360,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 22665,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 8,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Here's another way in, using your makerspace.\n\n**The back office with a slot in the wall.** Picture a very well-read student worker locked in a back office. They can't see the shop floor, the booking calendar or the manuals. All they can do is write on slips of paper and push them through a slot. A clerk at the front desk reads each slip, does what it says, and slides the answer back.\n\nTaped beside the slot is a menu:\n- \"Look up a manual page. Needs: machine name and topic.\"\n- \"Check the calendar. Needs: machine and date.\"\n- \"Book a slot. Needs: machine, date, time, student.\"\n\nA student asks, \"Can I use the laser cutter Thursday afternoon?\"\n1. The worker reads the question and the menu. They can't answer from memory, so they write: *Check the calendar: laser cutter, Thursday.*\n2. The clerk looks it up and slides back: *Free 2–4 pm.*\n3. The worker reads that and writes a slip to book 2–4 pm.\n4. The clerk books it and slides back *Done.*\n5. The worker has what they need, so they stop writing slips and tell the student the booking is made.\n\nHere is what each part of the analogy stands for:\n- **The slip** is the tool call. The model only requests an action, in a fixed format. It never does the action itself.\n- **The clerk** is your program. It does the real work and sends back the result.\n- **The menu** is the tool descriptions. The worker picks a tool based only on what the menu says, so a vague line gets misused.\n- **Repeating until done** is the loop you already know.\n\nThe analogy breaks down in one place. A real worker would remember yesterday's slips. The model starts fresh each time, so everything it needs has to be sent back through the slot. That is the context topic we're heading to.\n\nQuick check: if the menu said only \"Calendar stuff\", what could go wrong on a slip?\n\nIf you'd like, I can turn this into a short lesson with a worked makerspace example.",
+  "ttft_ms": 3083,
+  "type": "result",
+  "duration_ms": 17525,
+  "uuid": "7feae18b-2244-4bfb-86ac-31ee4fe19424",
+  "ttft_stream_ms": 2615,
+  "time_to_request_ms": 181,
+  "first_content_frame_ms": 2616,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1796,
+      "cacheReadInputTokens": 64262,
+      "cacheCreationInputTokens": 22665,
+      "webSearchRequests": 0,
+      "costUSD": 0.1150582,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 360,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 22665,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

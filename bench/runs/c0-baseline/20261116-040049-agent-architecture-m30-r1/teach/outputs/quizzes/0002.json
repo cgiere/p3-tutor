@@ -1,0 +1,50 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in an agent",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A student chats with your assistant on Monday and asks it to remember that they prefer morning slots. On Wednesday they open a new chat, and your program starts with an empty message list. What does the model know about Monday?",
+      "options": [
+        {"id": "a", "text": "Everything, because the model keeps all of its past chats"},
+        {"id": "b", "text": "Nothing, unless the program saved it and sent it again"},
+        {"id": "c", "text": "Only the last message, because the window keeps one turn"},
+        {"id": "d", "text": "Everything, as long as the context window is large enough"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "In one request, the system prompt and tool definitions are 1,500 tokens and the question is 100 tokens. The model is called three times. Call 1 asks for a tool (the request is 100 tokens). The tool returns 2,000 tokens. Call 2 asks for another tool (the request is 100 tokens), which returns 300 tokens. Call 3 writes the answer. Counting only input tokens, with nothing removed from the message list, how many input tokens are sent over all three calls?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q3",
+      "type": "short",
+      "objective": "O3",
+      "stem": "Give one reason why placing every machine manual in the system prompt is a poor design, even when the manuals fit inside the model's context window. Answer in one sentence."
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Your assistant must know, in every future session, that a student failed the band saw safety test and must retake it. Where should this fact be saved?",
+      "options": [
+        {"id": "a", "text": "In the system prompt for every student, as one more rule"},
+        {"id": "b", "text": "In the model's weights, by updating the model on this fact"},
+        {"id": "c", "text": "In the manual store, next to the band saw manual pages"},
+        {"id": "d", "text": "In a saved record for that student, loaded at session start"}
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A long tool result was needed for one step of a task and is not needed again, but it stays in the message list for the next twenty steps. In one or two sentences, what does this cost, and what can you do about it?"
+    }
+  ]
+}

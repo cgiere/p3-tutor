@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The loop is what makes it an agent: the model picks an action, the program runs it, and the result comes back for the next step. A longer prompt or a bigger model only changes what one call can do."
+    },
+    {
+      "id": "q2",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "You picked 'it read the calendar by opening the booking system on its own', but the model only produces text. Here that text is a request naming check_calendar with the laser cutter and tomorrow's date as arguments (option c). The program around the model reads that request, runs the tool and sends the result back. It is tempting to picture the model doing the work, because the final answer sounds like it looked at the calendar."
+    },
+    {
+      "id": "q3",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The agent repeats itself with the same failing feedback, so more room or more steps will not help. A step limit that stops the loop and reports back is the safeguard. For the makerspace assistant it also caps cost, since every extra step is another paid model call."
+    },
+    {
+      "id": "q4",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "The answer is 4, not 1. Each model call ends with one tool request or the final answer, so three tool requests plus the final answer make four calls. You wrote that the model 'runs the 3 tools itself' inside one call. The program runs the tools between calls, and the model never runs them. Count one call for the question and one for each tool result that comes back."
+    },
+    {
+      "id": "q5",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "'It sends it back to the model' is the right what. The question also asked why. The program sends the result back and calls the model again, so the model can use it to pick its next step or write the final answer. Give both parts next time."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": "M3",
+      "feedback": "The first part is right: the model is sent a list of tools, each with a name and description, and picks the one that fits. Your last sentence is wrong, though. The model does not remember earlier sessions on its own. It only sees what is in its current input, so anything it should recall has to be saved by the program and put back in. This links to the next topic, context and memory."
+    }
+  ],
+  "summary": "You have the loop down: you spotted what makes a system an agent, you chose a step limit for the stuck agent, and you know the model picks tools from their descriptions. The idea to fix is who does what. The model only writes text, such as a tool request, and the program runs the tools and calls the model again, which is why q4 is 4 calls. The model also remembers nothing between sessions unless the program supplies it. Next step: trace the laser-cutter question on paper, labelling each line 'model writes' or 'program does', and count the model calls. Then we move to context and memory."
+}

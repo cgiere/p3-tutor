@@ -1,0 +1,152 @@
+{
+  "duration_api_ms": 181329,
+  "stop_reason": "end_turn",
+  "session_id": "b965c2e3-ebab-47df-8873-10af927fa6a5",
+  "total_cost_usd": 0.5594644,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 63824,
+    "cache_read_input_tokens": 438341,
+    "output_tokens": 23290,
+    "output_tokens_details": {
+      "thinking_tokens": 1627
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 63824,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1025,
+        "cache_read_input_tokens": 69977,
+        "cache_creation_input_tokens": 4411,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4411
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 22,
+      "outputTokens": 23290,
+      "cacheReadInputTokens": 438341,
+      "cacheCreationInputTokens": 63824,
+      "webSearchRequests": 0,
+      "costUSD": 0.5320741,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1627,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 63824,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 48078,
+      "outputTokens": 5165,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 2,
+      "costUSD": 0.0273903,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2340,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 24,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "The 30-minute lesson on context and memory (O3) is written, with a quiz and a cheat sheet. I haven't opened the lesson in a browser or measured its word count. By my planning estimate it is well inside the 2,700–6,750 word range for 30 minutes.\n\n**Lesson:** `lessons/0001-context-and-memory.html`\n\nBy the end, Riley can decide whether each piece of information in the makerspace assistant belongs in context, in a saved note, or in a manual retrieved on demand, and say why. It covers:\n- **The context window:** the model's \"desk\", and why bigger or fuller is not better (cost, and context rot).\n- **Between steps:** the model keeps nothing, so the program re-sends the whole context on every call.\n- **Between sessions:** nothing survives unless it was stored outside the model and loaded back. The lesson also corrects the \"a bigger window is memory\" mix-up.\n- **Retrieval:** up-front versus just-in-time, and why a search can return the wrong page.\n- **Notes:** `save_note` and `read_notes` as tools, saving short dated facts rather than transcripts.\n\nIt also has a recall warm-up on the agent loop, three figures and practice checks with feedback. A worked token-cost example is followed by a faded version. The lesson ends with a \"where does it go?\" exercise on the makerspace assistant.\n\n**Quiz:** `quizzes/0002.json`, with its key in `keys/0002.json` (five items, none repeating the lesson's practice). I did not put any answers in this message.\n\n**Cheat sheet:** `cheatsheets/context-and-memory.html`, one page with terms, a where-does-it-go table and the cost rule of thumb.\n\n**Sources:** The primary source is Anthropic's [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). The second is [Context windows are not memory](https://machinelearningmastery.com/context-windows-are-not-memory-what-ai-agent-developers-need-to-understand/), a secondary source. Both are in `RESOURCES.md`. I opened both pages this session, and every external link in the lesson comes from them.\n\n**Things you may want to know:**\n- The quiz reuses the existing misconception id M3 (the model remembers earlier chats on its own). I created no new misconception ids.\n- I did not write a learning record, because Riley hasn't shown any understanding of this material yet.\n- `RESOURCES.md` has no agent-builder community. I listed the makerspace staff and the faculty advisor as stand-ins and recorded the missing community under Gaps. Is there an online community Riley already uses that I should add?\n- The lesson is numbered 0001 because `lessons/` was empty. The agent-loop lesson from the earlier session isn't in the workspace.\n- `NOTES.md` has a line about this lesson.\n\nRiley can ask me anything about the lesson in the chat, and the quiz is ready whenever they want it.",
+  "ttft_ms": 1584,
+  "type": "result",
+  "duration_ms": 169502,
+  "uuid": "b169955b-6de2-480f-9b52-726df9235fa1",
+  "ttft_stream_ms": 1106,
+  "time_to_request_ms": 169,
+  "first_content_frame_ms": 1106,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 22,
+      "outputTokens": 23290,
+      "cacheReadInputTokens": 438341,
+      "cacheCreationInputTokens": 63824,
+      "webSearchRequests": 0,
+      "costUSD": 0.5320741,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1627,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 63824,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 48078,
+      "outputTokens": 5165,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 2,
+      "costUSD": 0.0273903,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2340,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

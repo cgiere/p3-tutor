@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 25890,
+  "stop_reason": "end_turn",
+  "session_id": "dca36fc8-ade5-481e-aedf-57b6795d74e7",
+  "total_cost_usd": 0.1647153,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 29433,
+    "cache_read_input_tokens": 102173,
+    "output_tokens": 3675,
+    "output_tokens_details": {
+      "thinking_tokens": 154
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 29433,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 596,
+        "cache_read_input_tokens": 37684,
+        "cache_creation_input_tokens": 2313,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2313
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 3675,
+      "cacheReadInputTokens": 102173,
+      "cacheCreationInputTokens": 29433,
+      "webSearchRequests": 0,
+      "costUSD": 0.1647153,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 154,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 29433,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 15,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I graded Riley's submission `s1` for quiz 0001 and wrote the grades to `grades/0001-s1.json`. Riley got 2 of 6 items fully right.\n\n| Item | Verdict | Feedback |\n|---|---|---|\n| q1 | correct | The loop is what makes a system an agent. |\n| q2 | wrong (M4) | Riley picked \"the model reads the calendar on its own\". The model only outputs a tool request, and the program runs the tool. |\n| q3 | correct | A step limit is the right safeguard against a repeating loop. |\n| q4 | wrong (M4) | Riley answered 1 call, thinking the model runs the three tools itself. The answer is 4: three tool requests plus the final answer, with the program running the tools in between. |\n| q5 | partial | Riley said the result goes back to the model but didn't give the reason: the model needs it to choose its next step. |\n| q6 | partial (M3) | Riley was right that the model picks a tool from its name and description. Riley also said the model remembers earlier sessions on its own, which is wrong. |\n\n**Summary:** Riley has the loop and the stopping condition down. The main idea to fix is that the model only writes text, while the program runs the tools and calls the model again at every step. The other is that the model has no automatic memory between sessions.\n\nI also added `learning-records/0003-model-asks-program-acts.md` and updated `NOTES.md` with the two open misconceptions. M4 is that the model runs tools itself. M3 is that the model remembers on its own.\n\n**Next step:** Riley should re-trace the laser-cutter request and label each step \"model call\" or \"program action\", then count the model calls. After that we can start context and memory. `s2` is still ungraded, and comparing it with `s1` will show whether these misconceptions were corrected.",
+  "ttft_ms": 1442,
+  "type": "result",
+  "duration_ms": 26086,
+  "uuid": "84d96136-6923-4bcf-8116-fa132c7e2bb9",
+  "ttft_stream_ms": 994,
+  "time_to_request_ms": 143,
+  "first_content_frame_ms": 994,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 3675,
+      "cacheReadInputTokens": 102173,
+      "cacheCreationInputTokens": 29433,
+      "webSearchRequests": 0,
+      "costUSD": 0.1647153,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 154,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 29433,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

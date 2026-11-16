@@ -1,0 +1,39 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "c",
+      "rationale": "The model does not change when it is used, and a new chat starts with a fresh context. Nothing was saved, so nothing in the new context mentions the preference. Option b would be true only if something had been saved and loaded, but the stem says nothing was saved. Options a and d show the misconception that the model or its window remembers earlier conversations by itself (M7).",
+      "distractors": {"a": "M7", "d": "M7"}
+    },
+    {
+      "id": "q2",
+      "answer": 4320,
+      "tolerance": 0,
+      "rationale": "Call 1 input is 1,000. Call 2 is 1,000 + 40 + 500 = 1,540. Call 3 is 1,540 + 40 + 200 = 1,780. Total 1,000 + 1,540 + 1,780 = 4,320. Answering 1,740 (adding only the new material once) shows the idea that earlier context is not billed again (M8)."
+    },
+    {
+      "id": "q3",
+      "answer": "a",
+      "rationale": "The search runs in the program, outside the model, and only the returned chunks are put into the context as a tool result. The model never reads the whole manual (M9); that would be the cost retrieval avoids.",
+      "distractors": {"b": "M9", "c": "M9", "d": "M9"}
+    },
+    {
+      "id": "q4",
+      "answer": "d",
+      "rationale": "Notes should be short, durable facts that will be useful later: a training sign-off qualifies. Full transcripts and raw tool results are long and would refill the context when loaded (M10), and the safety rules belong in the system prompt, which applies to every conversation and is not student-specific.",
+      "distractors": {"a": "M10", "b": "M10"}
+    },
+    {
+      "id": "q5",
+      "answer": "Every token in the context is billed on every model call, so a huge prompt makes each call expensive, and the model may recall details worse as the context fills.",
+      "accepted": [
+        "It costs too much because the whole context is resent and billed on each call.",
+        "Recall gets worse as the context fills, and you pay for all those tokens on every call.",
+        "The manuals would be paid for again on every call, and long contexts reduce accuracy."
+      ],
+      "rationale": "Full credit needs one valid reason: cost (the whole context is resent and billed on every call) or quality (recall degrades as the context fills, so more is not better). Saying only that the window might overflow, or that the model cannot read that much, misses the point and shows the idea that a bigger window removes the need to manage context (M8)."
+    }
+  ]
+}

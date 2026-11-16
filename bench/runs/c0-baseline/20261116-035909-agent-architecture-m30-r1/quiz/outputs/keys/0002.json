@@ -1,0 +1,47 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "c",
+      "rationale": "In an agent the model owns the control flow: after each result it chooses the next action, or decides to stop. Code fixing the order (a) describes a workflow; the user (b) and the tool (d) do not pick the steps."
+    },
+    {
+      "id": "q2",
+      "answer": "a",
+      "rationale": "When the steps and their order are known in advance, code can run them directly and use the model only where language is needed, which is cheaper and more predictable. Choosing an agent because it uses a model (c), or assuming it is always more reliable (b), shows the belief that agents are always better; skipping the calendar check (d) is a risk, not a benefit."
+    },
+    {
+      "id": "q3",
+      "answer": "d",
+      "rationale": "The code decides the steps, always search then write, and the model is called at one fixed point, so this is a workflow. Using a model to write (a) or calling a search tool (b) does not make a system an agent; what matters is who chooses the next step. A person reading the answers (c) has nothing to do with the control flow."
+    },
+    {
+      "id": "q4",
+      "answer": 600,
+      "tolerance": 0,
+      "rationale": "The difference is 5 - 2 = 3 calls per request, and 3 x 200 = 600. Answering 1000 or 400 gives one system's total, not the difference."
+    },
+    {
+      "id": "q5",
+      "answer": "The steps cannot be known in advance, because what to do next depends on what earlier steps turn up.",
+      "accepted": [
+        "The number and order of steps is unpredictable, so the model has to choose them as it goes.",
+        "The path depends on intermediate results, so it cannot be fixed ahead of time.",
+        "The steps are open-ended or unpredictable.",
+        "It cannot be written as a fixed sequence of steps in advance."
+      ],
+      "rationale": "An agent earns its extra cost and unpredictability when the path depends on what comes back along the way, so code cannot fix it beforehand. Answers that only say the task is hard, long or important miss the point: a hard task with known steps still suits a workflow."
+    },
+    {
+      "id": "q6",
+      "answer": "A workflow's number of model calls is fixed by its code, while an agent's loop runs for as many steps as the model decides to take.",
+      "accepted": [
+        "The workflow always makes the same number of calls, but the agent's number of steps varies by request.",
+        "The code fixes how many model calls a workflow makes; the model decides how long an agent's loop runs.",
+        "A workflow has a set number of steps and an agent keeps going until the model decides it is done."
+      ],
+      "rationale": "Control flow in code means the number of model calls is known per request; control flow in the model means the number of loop iterations depends on the request and on what the tools return. Saying a workflow is simply cheaper per call misses the reason cost is predictable."
+    }
+  ]
+}

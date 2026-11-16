@@ -1,0 +1,62 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows, agents and who owns the control flow",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "In an agent, what decides which step comes next?",
+      "options": [
+        {"id": "a", "text": "The programmer's code, which fixes the order of steps in advance"},
+        {"id": "b", "text": "The user, who approves each step before the next one runs"},
+        {"id": "c", "text": "The model, which chooses its next action from the results so far"},
+        {"id": "d", "text": "The tool, which tells the program what should be called next"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Every booking request to your makerspace assistant needs the same four steps in the same order: read the request, check the calendar, book the slot if it is free, and send a confirmation. Which design fits best?",
+      "options": [
+        {"id": "a", "text": "A fixed workflow, since the steps and their order are known ahead"},
+        {"id": "b", "text": "An agent, since a model choosing each step is always more reliable"},
+        {"id": "c", "text": "An agent, since any feature that uses a model should be an agent"},
+        {"id": "d", "text": "An agent, since it can skip the calendar check when a slot looks free"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A program always runs search_manuals on the student's question, pastes the top three passages into a prompt, and calls the model once to write the answer. How should you describe this system?",
+      "options": [
+        {"id": "a", "text": "An agent, because the model writes the final answer in its own words"},
+        {"id": "b", "text": "An agent, because the program uses a search tool to find the passages"},
+        {"id": "c", "text": "A workflow, because a person reads each answer before the student does"},
+        {"id": "d", "text": "A workflow, because the code fixes the steps and the model only writes"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "Suppose a fixed workflow makes exactly 2 model calls per request, while an agent doing the same job averages 5 model calls per request. Assume every call costs the same. Over 200 requests, how many more model calls does the agent make than the workflow?",
+      "unit": "model calls"
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O4",
+      "stem": "In one sentence, what must be true about a task's steps for an agent to be worth its extra cost over a fixed workflow?"
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Your team has a small model budget. In one sentence, why can you predict a fixed workflow's cost per request before running it, but not an agent's?"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheat sheet: context and memory in an agent</title>
+  <style>
+    :root { --bg:#fffdf8; --text:#1f1d1a; --muted:#6b665e; --rule:#e4dfd4; --accent:#9a4517; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#171614; --text:#e9e5dc; --muted:#a49e93; --rule:#36332e; --accent:#eaa77a; } }
+    body { margin:0; background:var(--bg); color:var(--text); font-family: Charter, Georgia, serif; line-height:1.5; font-size:17px; }
+    main { max-width:44rem; margin:0 auto; padding:2rem 1.25rem; }
+    h1 { font-size:1.6rem; margin:0 0 .5rem; }
+    h2 { font-size:1.1rem; margin:1.5rem 0 .4rem; color:var(--accent); }
+    table { width:100%; border-collapse:collapse; font-size:.92rem; }
+    th, td { text-align:left; vertical-align:top; padding:.4rem .5rem; border-bottom:1px solid var(--rule); }
+    th { font-family:system-ui, sans-serif; font-size:.75rem; text-transform:uppercase; color:var(--muted); }
+    a { color:var(--accent); }
+    .src { font-size:.85rem; color:var(--muted); }
+    @media print { :root { --bg:#fff; --text:#000; --muted:#444; --rule:#ccc; --accent:#000; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Context and memory in an agent</h1>
+  <p class="src">From <a href="../lessons/0001-context-and-memory.html">lesson 0001</a>. Source: <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic, Effective context engineering for AI agents</a>.</p>
+
+  <h2>Core rule</h2>
+  <p>The model has no memory. It reads only the context window on each call. Anything remembered is stored outside the model and put back by your program.</p>
+
+  <h2>Terms</h2>
+  <table>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td>Context window</td><td>The tokens the model reads for one call: instructions, tool descriptions, conversation, tool results, retrieved text. Limited in size.</td></tr>
+    <tr><td>Context rot</td><td>Recall of information in the window gets worse as the window fills.</td></tr>
+    <tr><td>Session</td><td>One conversation or request. The window is discarded at its end.</td></tr>
+    <tr><td>Compaction</td><td>Summarize a long context and start a fresh window with the summary.</td></tr>
+    <tr><td>Retrieval (RAG)</td><td>Search a stored collection and put only the best chunks in context.</td></tr>
+    <tr><td>Notes</td><td>Facts the agent saves outside the window and reads back later.</td></tr>
+  </table>
+
+  <h2>Where does it go?</h2>
+  <table>
+    <tr><th>Information</th><th>Put it in</th><th>Why</th></tr>
+    <tr><td>Short rules that apply to every request</td><td>Context, every call</td><td>Cheap and always needed</td></tr>
+    <tr><td>Long manuals</td><td>Store; retrieve chunks</td><td>Too big and mostly irrelevant per question</td></tr>
+    <tr><td>Per-student facts (training, preferences)</td><td>Notes or a database lookup</td><td>Must outlive the session</td></tr>
+    <tr><td>Tool results during a request</td><td>Context (appended by the program)</td><td>The model needs them for the next step</td></tr>
+  </table>
+
+  <h2>Cost rule of thumb</h2>
+  <p>Input tokens for a request = the sum, over every model call, of everything in the context at that call. A result added at call k is paid for again on every later call.</p>
+</main>
+</body>
+</html>

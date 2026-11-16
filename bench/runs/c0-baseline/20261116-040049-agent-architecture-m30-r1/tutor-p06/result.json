@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 21164,
+  "stop_reason": "end_turn",
+  "session_id": "6e1750cf-698e-49e4-8a9e-f0a1a03efbcb",
+  "total_cost_usd": 0.134151,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 25004,
+    "cache_read_input_tokens": 98890,
+    "output_tokens": 2423,
+    "output_tokens_details": {
+      "thinking_tokens": 861
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25004,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 564,
+        "cache_read_input_tokens": 34628,
+        "cache_creation_input_tokens": 940,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 940
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2423,
+      "cacheReadInputTokens": 98890,
+      "cacheCreationInputTokens": 25004,
+      "webSearchRequests": 0,
+      "costUSD": 0.134151,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 861,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 25004,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 10,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Here's an everyday analogy for tool calling. It's a general picture, and I'll say below what I'm leaving out.\n\n**The analogy: a manager who can't leave the office.**\n\nPicture a very well-read manager locked in an office with a mail slot. They know a lot, but they can't see the world outside, and they can't touch anything out there.\n\nOutside is an assistant, who is your program. The assistant hands the manager a printed card listing what the assistant can do for them, such as \"look up a booking\" or \"search the manuals.\" The manager never sees how the assistant does these jobs. They only see the card.\n\nA student's question comes in. The manager can't answer it from memory, so they slide a note out through the slot: \"Please do this job, with these details.\" The manager doesn't go anywhere or do anything. They only write a request.\n\nThe assistant reads the note and does the job. Then they slide the result back in. The manager reads it and either writes another note or writes the final answer.\n\nTwo things to hold onto:\n- **The model only writes requests.** Everything that actually happens, it happens outside the office.\n- **Each trip through the slot is a separate turn.** The manager decides again each time.\n\n**Where the analogy breaks:** a human manager remembers the last note. The model only knows what's on the desk, meaning what the program puts in front of it each time. That's the topic after this one, context.\n\nQuiz 0001 is still ungraded and you've taken it twice. It tests tool calling directly, so I'm not going into who does what at each step, or how the manager picks a job from the card. I'll go through those in detail once it's graded. If you ask me to grade it, I'll do both attempts.\n\nQuick check, in your own words: in the analogy, who actually does the work of looking up a booking, the manager or the assistant?",
+  "ttft_ms": 1765,
+  "type": "result",
+  "duration_ms": 21500,
+  "uuid": "09113820-f48a-49cf-b4de-4f24826e444d",
+  "ttft_stream_ms": 1289,
+  "time_to_request_ms": 292,
+  "first_content_frame_ms": 1289,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2423,
+      "cacheReadInputTokens": 98890,
+      "cacheCreationInputTokens": 25004,
+      "webSearchRequests": 0,
+      "costUSD": 0.134151,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 861,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 25004,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

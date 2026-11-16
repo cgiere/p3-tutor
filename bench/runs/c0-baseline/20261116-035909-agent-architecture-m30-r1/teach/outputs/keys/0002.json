@@ -1,0 +1,35 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "c",
+      "rationale": "Everything in the request counts: system prompt, tool definitions, every message including tool results, and the output the model generates. Options a, b and d each count only part of it.",
+      "distractors": {"a": "M3", "b": "M7"}
+    },
+    {
+      "id": "q2",
+      "answer": 11250,
+      "tolerance": 0,
+      "rationale": "Call 1 input = 3,000 + 100 = 3,100. Call 2 = 3,100 + 50 + 400 = 3,550. Call 3 = 3,550 + 50 + 1,000 = 4,600. Total = 3,100 + 3,550 + 4,600 = 11,250. An answer of 4,600 counts only the last call, and shows the idea that the context is not re-sent each call."
+    },
+    {
+      "id": "q3",
+      "answer": "a",
+      "rationale": "Retrieval as a tool keeps the manuals outside the context and brings in only the pages needed, which limits cost (every context token is re-sent on each call) and avoids context rot. Putting all pages in the prompt (b) repeats their cost every call and can degrade recall, which is M7. Dropping them after one reply (c) removes them before the model can use them. Relying on training (d) is not reliable for your specific manuals.",
+      "distractors": {"b": "M7"}
+    },
+    {
+      "id": "q4",
+      "answer": "compaction",
+      "accepted": ["context compaction", "compacting", "summarization and restart", "compact", "conversation compaction"],
+      "rationale": "Summarizing a conversation near the window limit and continuing from the summary is called compaction. Note that this is lossy, which is why important facts are also saved as notes."
+    },
+    {
+      "id": "q5",
+      "answer": "d",
+      "rationale": "The memory tool is client-side: the model requests a file operation and the application runs it against storage it controls, then returns the result as a tool result. The model does not touch the disk (a), its weights do not change (b), and nothing is stored automatically by the provider (c, which is M3).",
+      "distractors": {"a": "M4", "c": "M3"}
+    }
+  ]
+}

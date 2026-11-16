@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes a system an agent is the loop: the model picks an action, the program runs it, and the result comes back for the next step. A longer prompt or a bigger model changes what one call can do, not the structure."
+    },
+    {
+      "id": "q2",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "You picked 'the model opens the booking system on its own'. That is tempting, because the end result looks like the model checked the calendar. But the model only writes text: here, a request naming check_calendar with the laser cutter and tomorrow's date (option c). The program around the model reads that request, runs the tool and sends the result back."
+    },
+    {
+      "id": "q3",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The agent is repeating itself, and all 40 steps already fit in its context, so more room or more steps will not help. A step limit that stops the loop and reports back is the safeguard. It is a stopping condition the program enforces, which a stronger prompt cannot do."
+    },
+    {
+      "id": "q4",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "The answer is 4, not 1. Your reasoning says the model 'runs the 3 tools itself', which is the root problem: the program runs the tools, and the model only requests them. Each call ends with one tool request or the final answer, so three requests plus the final answer make 4 calls. Equivalently, the model is called once for the question and once for each of the three results."
+    },
+    {
+      "id": "q5",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "You have the what: the result goes back to the model. The answer also needs the why. The model can only use the result if it is in its next input, and it uses it to choose the next step or write the final answer. Put both together: 'It adds the result to the model's input and calls the model again, so the model can decide what to do next.'"
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": "M3",
+      "feedback": "The first half is right: the model gets a list of tools, each with a name and description, and picks the one that fits the request. That is the whole mechanism. The second half is wrong: the model does not remember earlier sessions on its own. Each call starts fresh with only what the program puts in its input, so any memory between visits has to be built into the program. We cover that next."
+    }
+  ],
+  "summary": "You have the loop down (q1) and you know a stopping condition belongs in the program (q3). You also know the model picks tools from their descriptions. The idea to fix is who does what. The model only writes text, such as a tool request, and the program runs the tool and feeds the result back. That slip cost you q2 and q4, and it is the idea the makerspace design reviews will test. Next, redraw your Friday laser-cutter trace with two columns, 'model writes' and 'program does', and count the model calls. Then we will take on memory, since a model does not keep earlier sessions by itself."
+}

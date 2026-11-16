@@ -1,0 +1,44 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The model keeps nothing between calls or sessions; a new session starts with an empty context plus whatever the program loads. Nothing was saved or loaded, so Monday is gone. Choosing a, c or d shows the belief that the model remembers earlier conversations on its own (M3).",
+      "distractors": {"a": "M3", "c": "M3", "d": "M3"}
+    },
+    {
+      "id": "q2",
+      "answer": 4700,
+      "tolerance": 0,
+      "rationale": "Call 1 reads the start: 2,000. Call 2 reads the start, the tool request and the tool result: 2,000 + 100 + 600 = 2,700. Total = 2,000 + 2,700 = 4,700. An answer of 2,700 counts only the last call; 2,600 or 2,700 shows forgetting that the start is re-sent on each call."
+    },
+    {
+      "id": "q3",
+      "answer": "b",
+      "rationale": "Retrieval adds only the relevant passages, so each call reads few tokens. Pasting everything (a) pays for 400 pages on every call and risks poorer recall; a table of contents alone (c) gives the model no manual text to answer from; relying on students (d) is unreliable and not an assistant design."
+    },
+    {
+      "id": "q4",
+      "answer": "Every token in the context is paid for on each model call, and a crowded context can make the model recall the useful parts worse (context rot).",
+      "accepted": [
+        "It costs money because the context is re-sent and billed on every call",
+        "Cost: tokens are paid for each call",
+        "A crowded context makes the model less accurate at recalling the relevant information",
+        "Context rot: recall gets worse as the window fills",
+        "Irrelevant text can distract the model and hurt accuracy"
+      ],
+      "rationale": "Either reason is correct: cost (the whole context is re-read and billed on every call) or quality (recall degrades as the window fills, called context rot). Saying only that it will not fit does not answer the question, since the stem says it fits."
+    },
+    {
+      "id": "q5",
+      "answer": "The program saves that fact outside the model (a note, file or database record) and loads it into the context at the start of the next session.",
+      "accepted": [
+        "It writes a note or database record about the training and reads it back next visit",
+        "It looks up the student's training record from a database via a tool",
+        "The fact is stored outside the model and put back into the context when the student returns"
+      ],
+      "rationale": "Full credit needs the two parts: the fact is stored somewhere outside the model, and it is put back into context at the next session (by loading it or looking it up with a tool). Saying the model remembers it, or that a bigger context window keeps it, shows M3. Naming only storage without getting it back into context is partial."
+    }
+  ]
+}

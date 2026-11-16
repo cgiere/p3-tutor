@@ -1,0 +1,47 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The difference is who owns the control flow: in a workflow, predefined code paths set the steps; in an agent, the model decides its own steps and tool use (Anthropic, 'Building effective agents'). Both can use tools and models of any size, and reply length is unrelated."
+    },
+    {
+      "id": "q2",
+      "answer": "c",
+      "rationale": "The order of steps is written in the program, so the code owns the control flow, even though the model does one step (extraction). The model only produces values; it does not choose what runs next. Picking the model confuses doing a step with deciding the next step."
+    },
+    {
+      "id": "q3",
+      "answer": "a",
+      "rationale": "Booking has the same known steps in the same order every time, so the path can be fixed in code, which gives predictability and low cost. The other three need the next step to depend on what was found, which is where model-directed control flow pays off."
+    },
+    {
+      "id": "q4",
+      "answer": "d",
+      "rationale": "A workflow has a known, fixed number of model calls per request, so cost is predictable; an agent loops for as long as it decides, and each extra call re-reads the growing context, so cost and latency are higher and vary. A workflow can still use a model (a), and nothing here involves retraining (b) or tool-description length (c)."
+    },
+    {
+      "id": "q5",
+      "answer": "In a workflow, the program's code decides (a path fixed in advance); in an agent, the model decides.",
+      "accepted": [
+        "Workflow: code or the developer's predefined path. Agent: the model.",
+        "The code decides in a workflow and the model decides in an agent.",
+        "Predefined code paths in a workflow, the model itself in an agent."
+      ],
+      "rationale": "Both halves are needed: code (predefined by the developer) for workflows, the model for agents. Saying the user decides, or that the agent decides but not that it is the model, is incomplete or wrong."
+    },
+    {
+      "id": "q6",
+      "answer": "Predictability (the same steps every time) and low cost and speed (more model calls, more latency).",
+      "accepted": [
+        "Predictability and lower cost",
+        "Consistency and cheaper, faster runs",
+        "Reliability and cost",
+        "Predictable behavior and lower latency",
+        "Control over the steps and a lower model bill"
+      ],
+      "rationale": "An agent trades predictability and consistency, plus cost and latency, for flexibility the booking task does not need. Any two of: predictability or consistency or reliability, lower cost, lower latency. One of these is partial. Answers that name only flexibility or accuracy as lost are wrong."
+    }
+  ]
+}

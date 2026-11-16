@@ -1,0 +1,50 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in an agent",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A student chats with your makerspace assistant on Monday and returns on Friday in a new session. Your program saves nothing and loads nothing between the two sessions. What does the model know on Friday about Monday's chat?",
+      "options": [
+        {"id": "a", "text": "Everything, because the model stores each conversation it has"},
+        {"id": "b", "text": "Nothing, because Friday's context starts without any trace of it"},
+        {"id": "c", "text": "A short summary, which the model writes for itself on Monday"},
+        {"id": "d", "text": "Only the last question, which a large window can keep alive"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "For one request, the start of the context (instructions, tool descriptions and the question) is 2,000 tokens. The model's first call returns a tool request of 100 tokens. The tool result is 600 tokens. A second call then writes the final answer. Counting only the input the model reads on each call, how many input tokens were read in total across both calls?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Your assistant must answer questions from a 400-page set of machine manuals, and each model call costs money. Which design keeps the cost per question lowest while still answering from the manuals?",
+      "options": [
+        {"id": "a", "text": "Paste all 400 pages into the context at the start of every request"},
+        {"id": "b", "text": "Retrieve only the few passages that match the question, and add those"},
+        {"id": "c", "text": "Paste in the table of contents and trust the model to know the rest"},
+        {"id": "d", "text": "Ask the student to paste the pages that they think are relevant"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "objective": "O3",
+      "stem": "Give one reason to keep irrelevant text out of an agent's context even when it would fit inside the context window."
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A student passes laser cutter training today. In one or two sentences, how can the assistant know this at that student's next visit next week?"
+    }
+  ]
+}

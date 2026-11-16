@@ -1,0 +1,56 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in an agent",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Which of these count toward the context window in a single request to the model?",
+      "options": [
+        {"id": "a", "text": "Only the student's newest message and the model's reply to it"},
+        {"id": "b", "text": "Only the messages, because the prompt and tools are kept apart"},
+        {"id": "c", "text": "The system prompt, tool definitions, all messages and results, and the reply"},
+        {"id": "d", "text": "Only the text the student typed during the current chat session"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "An agent's system prompt and tool definitions together take 3,000 tokens, and the student's question takes 100. The model makes two tool requests of 50 tokens each, with results of 400 and then 1,000 tokens, and then writes its final answer in a third call. Each call receives the whole context so far. Counting only input, how many input tokens are processed in total across the three calls?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Your assistant must answer from 300 pages of machine manuals, and each request should cost as little as possible. Which design fits best?",
+      "options": [
+        {"id": "a", "text": "A search tool that returns the few best-matching pages for each question"},
+        {"id": "b", "text": "All 300 pages in the system prompt, since the window is large enough"},
+        {"id": "c", "text": "All 300 pages in the first reply only, then dropped from later calls"},
+        {"id": "d", "text": "The model's training, since it has already learned most machine manuals"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A long agent run is close to filling its context window. The program asks the model to summarize the work so far and continues from that summary alone. What is this technique called?"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "An agent uses a memory tool to save a note about a student, and a later session reads it back. Who actually carries out the saving and reading of the note?",
+      "options": [
+        {"id": "a", "text": "The model, which writes the file directly onto the storage disk"},
+        {"id": "b", "text": "The model, whose weights are updated when it saves something"},
+        {"id": "c", "text": "The model provider, which stores every note automatically for you"},
+        {"id": "d", "text": "Your program, which runs each file request the model makes"}
+      ]
+    }
+  ]
+}

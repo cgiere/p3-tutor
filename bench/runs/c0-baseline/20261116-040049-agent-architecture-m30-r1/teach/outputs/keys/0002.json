@@ -1,0 +1,33 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The model keeps nothing between calls; the program re-sends whatever it should know. A new empty list means Monday is gone unless the program saved the preference and loaded it. A bigger window does not change this."
+    },
+    {
+      "id": "q2",
+      "answer": 9400,
+      "tolerance": 1,
+      "rationale": "Call 1 sends 1,500 + 100 = 1,600. Call 2 sends 1,600 + 100 (request) + 2,000 (result) = 3,700. Call 3 sends 3,700 + 100 + 300 = 4,100. Total 1,600 + 3,700 + 4,100 = 9,400. An answer of 4,100 counts only the longest call and misses that the context is re-sent each time."
+    },
+    {
+      "id": "q3",
+      "answer": "Every call re-sends and pays for all those tokens, and a crowded context makes the model recall less reliably (context rot).",
+      "accepted": ["it costs tokens at every call", "it is paid for at every call", "context rot", "recall gets worse with more text", "too expensive because it is re-sent every call", "long context lowers accuracy and raises cost"],
+      "rationale": "Full credit for either named cost: the tokens are re-sent and billed at every call, or long contexts degrade recall (context rot). Saying they will not fit is wrong here, since the stem says they fit."
+    },
+    {
+      "id": "q4",
+      "answer": "d",
+      "rationale": "A small, exact, per-student fact needed across sessions belongs in saved notes that the program loads at session start. The system prompt is for rules for everyone, the manual store is for shared documents, and the model's weights cannot be changed this way."
+    },
+    {
+      "id": "q5",
+      "answer": "It is re-sent and paid for at every later call, and adds clutter; clear it or replace it with a short note once used.",
+      "accepted": ["it costs tokens on every later call; clear or summarize it", "paying for it again each call; drop it or shorten it", "tokens are paid every call, so clear the result or compact"],
+      "rationale": "Full credit names the repeated cost (or context rot) and a remedy: clearing the old result, replacing it with a short note, or compaction. Naming the cost without a remedy, or the reverse, is partial."
+    }
+  ]
+}
