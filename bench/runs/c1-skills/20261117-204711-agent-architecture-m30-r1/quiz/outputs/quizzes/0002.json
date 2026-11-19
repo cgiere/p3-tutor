@@ -1,0 +1,79 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows, agents and who owns the control flow",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "What separates a workflow from an agent?",
+      "options": [
+        {"id": "a", "text": "In a workflow the model picks each step; in an agent the code fixes the steps in advance"},
+        {"id": "b", "text": "In a workflow the code fixes the steps in advance; in an agent the model picks each step"},
+        {"id": "c", "text": "A workflow never calls a language model at all, while an agent calls one at least once"},
+        {"id": "d", "text": "A workflow makes one tool call in total, while an agent is allowed to make several"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "The makerspace assistant's code always does these steps in this order: search the manuals for the student's question, pass the top three passages to the model, and return the answer the model writes. What is this design?",
+      "options": [
+        {"id": "a", "text": "An agent, because a language model writes the final answer the student reads"},
+        {"id": "b", "text": "An agent, because it uses a search tool to find passages in the manuals"},
+        {"id": "c", "text": "An agent, because it takes three separate steps instead of a single model call"},
+        {"id": "d", "text": "A workflow, because the code, not the model, fixes the order of the steps"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A student writes: \"Book me any machine that can cut 6 mm acrylic, any time this week.\" The assistant has calendar, manual-search and booking tools, and after each result it decides which tool to call next, or to stop. Who owns the control flow here?",
+      "options": [
+        {"id": "a", "text": "The model, because it chooses the next action after seeing each result, so this is an agent"},
+        {"id": "b", "text": "The program, because it is the program that actually runs every tool the model asks for"},
+        {"id": "c", "text": "The developer, because they wrote the tool descriptions that the model reads each time"},
+        {"id": "d", "text": "Neither, because the loop simply repeats until a stopping condition ends it for them"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "After every booking, the assistant must check the student's training status, write the booking to the calendar, and email a confirmation. These three steps are the same every time. Which design fits best?",
+      "options": [
+        {"id": "a", "text": "An agent, because a model can handle any case and so is always the safer choice"},
+        {"id": "b", "text": "An agent, because a loop that picks each step costs less than the same fixed code"},
+        {"id": "c", "text": "A fixed workflow, because the steps are known in advance, so code can run them predictably and cheaply"},
+        {"id": "d", "text": "A fixed workflow, because code never makes mistakes while an agent will always get something wrong"}
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Which of these requests would most justify giving the assistant agent-style control over its steps, rather than a fixed workflow?",
+      "options": [
+        {"id": "a", "text": "\"What are the laser cutter's opening hours?\", which is always one lookup in the manual"},
+        {"id": "b", "text": "\"Show me my bookings for today\", which is always one calendar query then a list"},
+        {"id": "c", "text": "\"Cancel my 3 pm booking today\", which is always a lookup, a delete and a confirmation"},
+        {"id": "d", "text": "\"Find a time this week when a 3D printer and a laser cutter are both free, then book it\""}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "At the design review, a teammate says: \"Make the whole assistant one agent, since agents are the most capable.\" With a small model budget, which reply is best?",
+      "options": [
+        {"id": "a", "text": "Agree, since the model can skip steps it doesn't need, so an agent costs no more than a workflow"},
+        {"id": "b", "text": "Use an agent only where the steps can't be known ahead, since every loop step is another model call and fixed parts run cheaper as workflows"},
+        {"id": "c", "text": "Disagree, since a workflow can't call a model, so it could never answer questions from the manuals"},
+        {"id": "d", "text": "Agree, since a fixed workflow would need rewriting whenever a student words a request differently"}
+      ]
+    }
+  ]
+}

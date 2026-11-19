@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 11584,
+  "stop_reason": "end_turn",
+  "session_id": "2c1fbb21-6874-4864-a476-79a44cfb9cd0",
+  "total_cost_usd": 0.07303609999999999,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 13425,
+    "cache_read_input_tokens": 53441,
+    "output_tokens": 1398,
+    "output_tokens_details": {
+      "thinking_tokens": 112
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 13425,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 682,
+        "cache_read_input_tokens": 23538,
+        "cache_creation_input_tokens": 451,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 451
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1398,
+      "cacheReadInputTokens": 53441,
+      "cacheCreationInputTokens": 13425,
+      "webSearchRequests": 0,
+      "costUSD": 0.07303609999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 112,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 13425,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 6,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "**Neither. The premise is false: more agents don't always give better results.** For a makerspace assistant with a small budget, start with one agent and a few tools.\n\n**Why it's tempting**\n- A team of specialists sounds better than one generalist, like a bigger roster in a sport.\n- But agents aren't players who work for free. Each agent is a separate model loop (the cycle of ask, act, get a result, repeat), and each loop costs tokens.\n\n**What splitting costs**\n- Every agent re-reads its own instructions and context, so the bill grows with the agent count.\n- Agents pass work to each other as text summaries, and details get lost in those hand-offs.\n- More agents means more places for something to go wrong, and a harder design review defense.\n\n```\nOne agent:   student -> [agent] -> manual tool / calendar tool / booking tool\nTen agents:  student -> [router] -> [manual agent] -> [calendar agent] -> [booking agent] ...\n                          (each arrow = tokens spent + detail lost)\n```\n\n**When a split pays off**\n- **Separate contexts:** one job fills the context with something huge, like long manuals, and would drown the rest.\n- **Parallel work:** independent subtasks can run at the same time.\n- **Different tools or permissions:** booking should be locked down apart from read-only lookups.\n\nYour three jobs (answer from manuals, check the calendar, book time) mostly run in sequence and share one conversation. That points to one agent, or at most two. If you did split, the manual lookup would be the candidate, because it has the heaviest context.\n\nI can write a lesson on when multi-agent designs pay off.\n\n**One question back:** Which reason would justify giving booking its own agent?\n- (i) It sounds more organized on a diagram.\n- (ii) It needs tighter permissions than the read-only lookups.\n- (iii) Each tool should always have its own agent.\n- (iv) More agents lower the cost per request.\n\n**Trap:** \"It's cleaner to have one agent per task\" is a tidy-looking reason, but it doesn't tell you what the split actually buys you.",
+  "ttft_ms": 1059,
+  "type": "result",
+  "duration_ms": 11754,
+  "uuid": "58c4c09b-38e7-4dcb-944b-a059bdefdf90",
+  "ttft_stream_ms": 631,
+  "time_to_request_ms": 135,
+  "first_content_frame_ms": 631,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1398,
+      "cacheReadInputTokens": 53441,
+      "cacheCreationInputTokens": 13425,
+      "webSearchRequests": 0,
+      "costUSD": 0.07303609999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 112,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 13425,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

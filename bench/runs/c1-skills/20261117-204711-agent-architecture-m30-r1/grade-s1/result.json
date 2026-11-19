@@ -1,0 +1,128 @@
+{
+  "duration_api_ms": 24649,
+  "stop_reason": "end_turn",
+  "session_id": "ba83453d-471f-4a79-9d51-b41c1e710db3",
+  "total_cost_usd": 0.1451136,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 23411,
+    "cache_read_input_tokens": 142556,
+    "output_tokens": 3719,
+    "output_tokens_details": {
+      "thinking_tokens": 184
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23411,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 445,
+        "cache_read_input_tokens": 31912,
+        "cache_creation_input_tokens": 2063,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2063
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 3719,
+      "cacheReadInputTokens": 142556,
+      "cacheCreationInputTokens": 23411,
+      "webSearchRequests": 0,
+      "costUSD": 0.1451136,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 184,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23411,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01DTiQMuh1WXnocPbs41g7tC",
+      "tool_input": {
+        "command": "cd /private/var/folders/8n/fftfcdc925b5xbktz1flb42h0000gn/T/p3-61r2gev6; mkdir grades; cat > /tmp/g.py <<'E'\nimport json\nitems=[\n(\"q1\",\"correct\",None,\"That's right, because an agent is defined by its structure: the model picks an action, the program runs it, and the result comes back for the next step. A longer prompt or bigger model only changes what one call can do.\"),\n(\"q2\",\"wrong\",\"M4\",\"No, the model never opens the booking system; it only writes text, a request naming check_calendar with the machine and date as arguments. The program around it runs the tool and returns the result.\"),\n(\"q3\",\"correct\",None,\"That's right, because repeating the same edit against the same failing test adds nothing, so the safeguard is a stopping condition. A step limit ends the loop and hands the problem back to a person.\"),\n(\"q4\",\"wrong\",\"M4\",\"Not quite: the model runs no tools; the program does. Each model call ends in one tool request or the final answer, so the three requests plus the answer make 4 calls, one per input the model receives.\"),\n(\"q5\",\"partial\",None,\"Not quite complete: sending the result back to the model is the right action, but you left out why. The program adds it to the model's next input and calls it again so the model can pick its next step.\"),\n(\"q6\",\"partial\",\"M3\",\"You have the core right: the program gives the model each tool's name and description, and it picks the best fit. But the model keeps no choices from earlier sessions, because it has no automatic memory.\"),\n]\nfor i in items: print(i[0],len(i[3]))\njson.dump({\"quiz\":\"0001\",\"submission\":\"s1\",\"items\":[{\"id\":a,\"verdict\":b,\"misconception\":c,\"feedback\":d} for a,b,c,d in items],\n\"summary\":\"You have the loop down: you spotted what makes an agent and that a stopping condition is the right safeguard. The thing to fix is who does what: the model only writes requests, and the program runs every tool and calls the model again for each step. Next, redraw your laser cutter trace with two columns, model and program, and count the model calls.\"},open(\"grades/0001-s1.json\",\"w\"),indent=2)\nE\npython3 /tmp/g.py"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 8,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I graded `submissions/s1.json` and wrote `grades/0001-s1.json`. I also added a learning record and updated `NOTES.md`.\n\n| Item | Verdict | Misconception | Why |\n|---|---|---|---|\n| q1 | correct | none | |\n| q2 | wrong | M4 | You said the model opens the booking system. It only writes a request naming `check_calendar` with its arguments, and the program runs the tool. |\n| q3 | correct | none | |\n| q4 | wrong | M4 | You said 1 call. It's 4: three tool requests plus the final answer. |\n| q5 | partial | none | You had the \"sends it back to the model\" part. You left out why: so the model can pick its next step or write the answer. |\n| q6 | partial | M3 | You had the tool names and descriptions right. The claim that the model remembers its tool choices across sessions is wrong, because it has no automatic memory. |\n\n**Summary:** You know what makes an agent and that a step limit is the right safeguard. The thing to fix is who does what. The model only writes requests. The program runs every tool and calls the model again for each step.\n\n**Next step:** Redraw your laser cutter trace with two columns, model and program, and count the model calls.\n\n`submissions/s2.json` is not graded yet. When we grade it, I can check whether M4 and M3 are fixed.",
+  "ttft_ms": 1622,
+  "type": "result",
+  "duration_ms": 25682,
+  "uuid": "8d4fb6dc-2151-4a8e-abc9-887ae72a0628",
+  "ttft_stream_ms": 596,
+  "time_to_request_ms": 39,
+  "first_content_frame_ms": 596,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 12,
+      "outputTokens": 3719,
+      "cacheReadInputTokens": 142556,
+      "cacheCreationInputTokens": 23411,
+      "webSearchRequests": 0,
+      "costUSD": 0.1451136,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 184,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23411,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

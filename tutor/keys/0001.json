@@ -1,0 +1,34 @@
+{
+  "id": "0001",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "c",
+      "rationale": "The docs' loop is 'while stop_reason == \"tool_use\"': the model is waiting for a tool result. Any other stop reason exits. Trusting the model's text (b) instead of the stop_reason shows M1.",
+      "distractors": {"b": "M1"}
+    },
+    {
+      "id": "q2",
+      "answer": "a",
+      "rationale": "max_tokens means the output hit the token limit, so the response is truncated; the fix is to raise the limit or continue. Reading any non-tool_use ending as completion (b) shows M2.",
+      "distractors": {"b": "M2"}
+    },
+    {
+      "id": "q3",
+      "answer": "pause_turn",
+      "accepted": ["pause turn", "\"pause_turn\"", "stop_reason: pause_turn"],
+      "rationale": "When the server-side loop hits its iteration limit the response returns pause_turn instead of end_turn: the work is not complete, so you send the response back to continue. Answering end_turn shows M2."
+    },
+    {
+      "id": "q4",
+      "answer": "c",
+      "rationale": "max_turns counts each tool-calling turn plus one for the final text-only answer: 4 + 1 = 5, which fits the cap of 5, so the run ends with subtype success and a result. With max_turns=4 it would have been error_max_turns."
+    },
+    {
+      "id": "q5",
+      "answer": "b",
+      "rationale": "A Stop hook fires when Claude finishes responding, and returning decision block with a reason keeps Claude working and hands it the reason. Raising limits does not make the model check its claim, and treating end_turn as proof of success (d) shows M1.",
+      "distractors": {"d": "M1"}
+    }
+  ]
+}

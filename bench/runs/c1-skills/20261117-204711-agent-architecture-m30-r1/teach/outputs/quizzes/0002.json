@@ -1,0 +1,50 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in an agent",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Your makerspace assistant is on its fourth model call in one run. Which description best matches what the model receives on that call?",
+      "options": [
+        {"id": "a", "text": "Only the newest tool result, because it remembers the earlier steps itself"},
+        {"id": "b", "text": "The setup plus every earlier request and result, resent by the program"},
+        {"id": "c", "text": "Only the student's question, with the tool results kept in the program"},
+        {"id": "d", "text": "A short summary the model wrote itself after each of the earlier steps"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A student was told on Monday that they still need bandsaw training. On Friday they start a new chat and the assistant knows nothing about it. What is the best fix?",
+      "options": [
+        {"id": "a", "text": "Switch to a model with a larger context window so Monday carries over"},
+        {"id": "b", "text": "Tell the model in its system prompt to remember every student it meets"},
+        {"id": "c", "text": "Store the student's training status and load it when a new session starts"},
+        {"id": "d", "text": "Resend the whole of every past chat with every student on each call"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "A run has three model calls. The setup (system prompt, tools, question) is 1,000 tokens. The model's first call requests a tool (50 tokens) and the result is 200 tokens. The second call requests another tool (50 tokens) and that result is 800 tokens. The third call writes the final answer. Each call's input is the full history so far. How many input tokens are sent in total across the three calls?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "objective": "O3",
+      "stem": "In your manuals index, a retrieved chunk reads \"Set the speed to 40% and the power to 60%.\" It was retrieved for questions about the wrong machines. In one or two sentences, why did that happen, and what can you do about it when building the index?"
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A long run is close to filling the context window. Name one thing the agent can do to carry on, and say what it costs or risks."
+    }
+  ]
+}

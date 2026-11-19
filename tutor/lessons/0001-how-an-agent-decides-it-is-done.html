@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="p3-minutes" content="10">
+  <meta name="p3-objective" content="O1">
+  <title>How an agent decides it is done</title>
+  <style>
+    :root {
+      --bg: #fffdf8;
+      --text: #1f1d1a;
+      --muted: #6b665e;
+      --rule: #e4dfd4;
+      --accent: #9a4517;
+      --accent-soft: #f7ede4;
+      --warn: #8c2f39;
+      --warn-soft: #f9eaec;
+      --ok: #2f6b3a;
+      --ok-soft: #e7f2e9;
+      --code-bg: #f3efe6;
+      --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Sitka Text", Cambria, Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #171614;
+        --text: #e9e5dc;
+        --muted: #a49e93;
+        --rule: #36332e;
+        --accent: #eaa77a;
+        --accent-soft: #2c231d;
+        --warn: #f0a3ac;
+        --warn-soft: #2f1f22;
+        --ok: #9fd3a8;
+        --ok-soft: #1c2a1f;
+        --code-bg: #23211e;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 19px; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--serif); line-height: 1.6; }
+    main { max-width: 40rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+    p, li { hyphens: auto; }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    h1, h2, h3 { line-height: 1.25; font-weight: 600; }
+    h1 { font-size: 2.1rem; margin: 0.25rem 0 1rem; }
+    h2 { font-size: 1.45rem; margin: 3rem 0 0.75rem; }
+    h3 { font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+    .kicker, .label, .meta, .section-time, figcaption, summary, th, nav.toc, footer.closing {
+      font-family: var(--sans);
+    }
+    .kicker { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .lead { font-size: 1.15rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.85rem; color: var(--muted);
+            border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 0.5rem 0; margin: 1.5rem 0; }
+    nav.toc { font-size: 0.9rem; margin: 1.5rem 0 2rem; }
+    nav.toc ol { padding-left: 1.2rem; margin: 0.4rem 0 0; }
+    .section-time { font-size: 0.8rem; font-weight: 400; color: var(--muted); margin-left: 0.4rem; white-space: nowrap; }
+    dfn { font-style: normal; font-weight: 600; }
+    aside.note { font-size: 0.9rem; color: var(--muted); border-left: 2px solid var(--rule); padding-left: 1rem; margin: 1.25rem 0; }
+    .box { border-radius: 6px; padding: 1rem 1.25rem; margin: 1.75rem 0; }
+    .box > :first-child { margin-top: 0; }
+    .box > :last-child { margin-bottom: 0; }
+    .label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .mission { background: var(--accent-soft); }
+    .mission .label { color: var(--accent); }
+    .misconception { background: var(--warn-soft); border-left: 4px solid var(--warn); }
+    .misconception .label { color: var(--warn); }
+    .worked { border: 1px solid var(--rule); }
+    .worked ol { padding-left: 1.3rem; }
+    .summary { border: 1px solid var(--rule); }
+    figure { margin: 2rem 0; }
+    figure svg { display: block; width: 100%; height: auto; }
+    figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 1.5rem 0; }
+    th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--rule); }
+    th { font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+    code, pre { font-family: var(--mono); font-size: 0.85em; background: var(--code-bg); border-radius: 4px; }
+    code { padding: 0.1em 0.3em; }
+    pre { padding: 1rem; overflow-x: auto; line-height: 1.45; }
+    pre code { padding: 0; background: none; font-size: 1em; }
+    .check { border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin: 1.75rem 0; }
+    .check .label { color: var(--accent); }
+    .check p { margin: 0.25rem 0; }
+    .choices { list-style: none; padding: 0; margin: 0.75rem 0 0; display: grid; gap: 0.5rem; }
+    .choices button { width: 100%; text-align: left; font: inherit; font-size: 0.95rem; color: inherit; background: transparent;
+                      border: 1px solid var(--rule); border-radius: 6px; padding: 0.55rem 0.8rem; cursor: pointer; }
+    .choices button:hover { border-color: var(--accent); }
+    .choices button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .choices button.right { border-color: var(--ok); background: var(--ok-soft); }
+    .choices button.wrong { border-color: var(--warn); background: var(--warn-soft); }
+    .feedback { font-size: 0.95rem; margin: 0.6rem 0 0; }
+    .feedback:empty { margin: 0; }
+    details { margin-top: 0.75rem; }
+    summary { font-size: 0.85rem; color: var(--accent); cursor: pointer; }
+    details > :not(summary) { margin: 0.5rem 0 0; }
+    .go-further li { margin-bottom: 0.6rem; }
+    footer.closing { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--muted); }
+    @media (max-width: 32rem) {
+      html { font-size: 17px; }
+      h1 { font-size: 1.75rem; }
+      main { padding-top: 2rem; }
+    }
+    @media print {
+      :root { --bg: #fff; --text: #000; --muted: #444; --rule: #ccc; --accent: #000; --accent-soft: #f2f2f2;
+              --warn: #000; --warn-soft: #f2f2f2; --ok: #000; --ok-soft: #fff; --code-bg: #f2f2f2; }
+      html { font-size: 11.5pt; }
+      main { max-width: none; padding: 0; }
+      nav.toc { display: none; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
+      .box, .check, figure, table, pre { break-inside: avoid; }
+    }
+  </style>
+<style>
+    .verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+    .verdicts div { border: 1px solid var(--rule); border-radius: 6px; padding: 0.7rem 0.9rem; font-size: 0.92rem; }
+    .verdicts strong { display: block; font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); }
+    td.blank { color: var(--muted); font-style: italic; }
+  </style>
+</head>
+<body>
+<main>
+
+  <header>
+    <div class="kicker">Lesson 0001 &middot; 10 minutes</div>
+    <h1>How an agent decides it is done</h1>
+    <p class="lead">By the end of this lesson you can look at how an agent run ended and say who stopped it, the model, a limit, or a check, and whether the task is actually finished.</p>
+    <div class="meta">
+      <span>Objective O1: explain and read an agent loop's stop signals</span>
+      <span>About 10 minutes</span>
+    </div>
+    <div class="box mission">
+      <span class="label">Why this matters for you</span>
+      <p>You are learning to build with coding agents. Every agent you write or configure, including a tutor running in Claude Code, ends somehow; knowing which ending you got is the difference between shipping a result and shipping a half-finished one.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="In this lesson">
+    <strong>In this lesson</strong>
+    <ol>
+      <li><a href="#s1">The big idea: three things can end a loop</a></li>
+      <li><a href="#s2">Layer 1: the model stops asking for tools</a></li>
+      <li><a href="#s3">Layer 2: limits stop it from outside</a></li>
+      <li><a href="#s4">Layer 3: a check can refuse the stop</a></li>
+      <li><a href="#practice">Worked example and practice</a></li>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#further">Go further</a></li>
+    </ol>
+  </nav>
+
+  <section id="s1">
+    <h2>The big idea: three things can end a loop <span class="section-time">2 min</span></h2>
+    <p>An <dfn>agent loop</dfn> is a cycle: the model looks at the conversation, either asks for a tool (read a file, run tests) or answers, your code runs the tool, the result goes back, repeat (<a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works">Claude docs, How tool use works</a>).</p>
+    <p>"Done" is decided in three layers:</p>
+    <ul>
+      <li><strong>The model</strong> decides it has nothing left to do and answers without calling a tool. This is the normal ending.</li>
+      <li><strong>Limits</strong> set by you (turns, budget, output tokens) cut it off, done or not.</li>
+      <li><strong>Checks</strong> you write look at the result and can send the agent back to work.</li>
+    </ul>
+
+    <figure>
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="fig1-title">
+        <title id="fig1-title">The agent loop with its three exits</title>
+        <defs>
+          <marker id="arrow1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="20" y="110" width="150" height="60" rx="8"/>
+          <polygon points="300,80 390,140 300,200 210,140" style="stroke: var(--accent)"/>
+          <rect x="230" y="235" width="140" height="50" rx="8"/>
+          <rect x="470" y="20" width="160" height="56" rx="8" style="stroke: var(--ok)"/>
+          <rect x="470" y="112" width="160" height="56" rx="8" style="stroke: var(--warn)"/>
+          <rect x="470" y="204" width="160" height="56" rx="8"/>
+          <line x1="170" y1="140" x2="206" y2="140" marker-end="url(#arrow1)"/>
+          <line x1="300" y1="200" x2="300" y2="231" marker-end="url(#arrow1)"/>
+          <path d="M230,260 L95,260 L95,174" marker-end="url(#arrow1)"/>
+          <path d="M380,128 L466,52" marker-end="url(#arrow1)"/>
+          <line x1="390" y1="140" x2="466" y2="140" marker-end="url(#arrow1)" stroke-dasharray="5 4"/>
+          <path d="M550,204 L550,190 L420,190 L330,180" marker-end="url(#arrow1)" stroke-dasharray="2 4"/>
+        </g>
+        <g fill="currentColor" font-family="system-ui, sans-serif" font-size="18" text-anchor="middle">
+          <text x="95" y="146">Model turn</text>
+          <text x="300" y="134" style="fill: var(--accent)">tool</text>
+          <text x="300" y="156" style="fill: var(--accent)">call?</text>
+          <text x="300" y="266">Run tool</text>
+          <text x="318" y="222" font-size="15">yes</text>
+          <text x="550" y="54" style="fill: var(--ok)">1. Final answer</text>
+          <text x="550" y="146" style="fill: var(--warn)">2. Limit hit</text>
+          <text x="550" y="238">3. Check</text>
+          <text x="425" y="100" font-size="15">no</text>
+        </g>
+      </svg>
+      <figcaption>Figure 1. The loop keeps going while the model asks for tools. Exit 1 is the model's own decision; exit 2 is a limit cutting in at any point; a check (3) can send it back into the loop.</figcaption>
+    </figure>
+  </section>
+
+  <section id="s2">
+    <h2>Layer 1: the model stops asking for tools <span class="section-time">2 min</span></h2>
+    <p>Every response from the Claude API carries a <dfn>stop_reason</dfn>, a field saying why the model stopped generating. The canonical loop is just this (<a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent">Build a tool-using agent</a>):</p>
+<pre><code>while response.stop_reason == "tool_use":
+    result = run_tool(...)            # your code does the work
+    messages.append(result)           # feed the result back
+    response = client.messages.create(..., messages=messages)
+
+# loop is over: end_turn, max_tokens, stop_sequence, refusal...</code></pre>
+    <ul>
+      <li><code>tool_use</code>: "Claude is calling a tool that you need to run." Keep looping.</li>
+      <li><code>end_turn</code>: Claude "completed its response naturally." This is the model saying "I'm done" (<a href="https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons">Handling stop reasons</a>).</li>
+    </ul>
+    <p>The Agent SDK, which runs Claude Code's own loop, says the same: turns continue "until Claude produces output with no tool calls" (<a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a>).</p>
+
+    <div class="box misconception">
+      <span class="label">A common mix-up (M1)</span>
+      <p>"The agent stopped, so the task is finished." Tempting, because the final message usually <em>says</em> it is finished. But <code>end_turn</code> only means the model <em>believes</em> it is done. An agent that writes "all tests pass" without running them ends with the same <code>end_turn</code> as one that ran them. That is why Anthropic stresses getting "ground truth" from the environment at each step (<a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents</a>).</p>
+    </div>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>A response arrives with <code>stop_reason: "tool_use"</code> and a request to run <code>pytest</code>. What does the loop do next?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="The model has not answered yet; it is waiting on the pytest output, so there is nothing to show.">Shows the reply to the user</button></li>
+        <li><button type="button" data-correct="true" data-why="tool_use means the model is waiting for a tool result: run it, send the result, ask again.">Runs pytest and sends the output back</button></li>
+        <li><button type="button" data-correct="false" data-why="Only an exit condition ends the loop; tool_use is exactly the condition that keeps it going.">Ends the loop as finished</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details><summary>Show the answer</summary><p>It runs pytest and sends the output back as a tool result. <code>tool_use</code> is the one stop reason that keeps the loop going.</p></details>
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2>Layer 2: limits stop it from outside <span class="section-time">2 min</span></h2>
+    <p>Anthropic's guidance: tasks often end on completion, but it is "common to include stopping conditions (such as a maximum number of iterations) to maintain control" (<a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents</a>). A limit ending the loop is <em>not</em> the task being done.</p>
+    <p>Analogy, one mapping: the game clock is <code>max_turns</code>; when it runs out the game ends no matter who was mid-play, and the box score says "time expired", not "won".</p>
+
+    <div class="verdicts">
+      <div><strong>max_tokens</strong>Output hit your token limit. The answer is cut off: raise the limit or continue.</div>
+      <div><strong>pause_turn</strong>Server tools (like web search) hit their iteration cap. "The work isn't complete": send it back to continue.</div>
+      <div><strong>error_max_turns</strong>Agent SDK ran out of turns. No <code>result</code> text at all.</div>
+      <div><strong>error_max_budget_usd</strong>Agent SDK hit your spend cap. Also no <code>result</code>.</div>
+    </div>
+    <p class="meta" style="border:0;margin:0">Sources: <a href="https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons">Handling stop reasons</a>; <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a>.</p>
+
+    <p>One counting detail: in the SDK, <code>max_turns</code> counts each tool-calling turn <em>plus one</em> for the final text-only answer. Forget the plus one and the run ends with <code>error_max_turns</code> and no answer.</p>
+
+    <div class="box misconception">
+      <span class="label">A common mix-up (M2)</span>
+      <p>"Anything other than <code>tool_use</code> means success." The loop does <em>exit</em> on any other stop reason, but the docs say these can mean "stopped for another reason that your application should handle." A <code>max_tokens</code> ending is a truncated answer, not a finished one.</p>
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2>Layer 3: a check can refuse the stop <span class="section-time">1 min</span></h2>
+    <p>Because the model's "done" is only a belief, you can add a check that runs when it tries to stop. In Claude Code, a <dfn>Stop hook</dfn> is a script that fires "when Claude finishes responding"; if it returns <code>"decision": "block"</code> with a reason, Claude does not stop and gets the reason as its next instruction (<a href="https://code.claude.com/docs/en/hooks">Hooks reference</a>):</p>
+<pre><code>{ "decision": "block",
+  "reason": "Tests are still failing. Fix them before finishing." }</code></pre>
+    <p>This turns "the model thinks it's done" into "the model thinks it's done <em>and</em> the check agrees."</p>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>An SDK run returns a ResultMessage with subtype <code>error_max_budget_usd</code>. What do you know?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="The result field only exists on success; a budget stop gives you no final answer to read.">The task finished, read the result</button></li>
+        <li><button type="button" data-correct="false" data-why="A refusal shows up as stop_reason refusal; this subtype is about spend.">The model refused the original task</button></li>
+        <li><button type="button" data-correct="true" data-why="A limit cut it off. Nothing says the task finished, and there is no result text.">A spend limit ended it, maybe unfinished</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details><summary>Show the answer</summary><p>A spend limit ended the run. The task may or may not be done, and there is no <code>result</code> text to read.</p></details>
+    </div>
+  </section>
+
+  <section id="practice">
+    <h2>Worked example and practice <span class="section-time">2 min</span></h2>
+    <div class="box worked">
+      <span class="label">Worked example</span>
+      <p><strong>The problem:</strong> "Fix the failing tests in auth.ts." Who ended this run, and is the task done?</p>
+      <ul><li>Turn 1: Bash <code>npm test</code> (3 failures)</li><li>Turn 2: Read two files</li><li>Turn 3: Edit, then <code>npm test</code> (all pass)</li><li>Turn 4: text only, "Fixed it, all three tests pass." Subtype <code>success</code>.</li></ul>
+      <table>
+        <tr><th>Step</th><th>What happens</th><th>Why</th></tr>
+        <tr><td>1</td><td>Turns 1 to 3 call tools, so the loop continues</td><td>Layer 1: tool calls keep it going</td></tr>
+        <tr><td>2</td><td>Turn 4 has no tool call: the model ended it</td><td>Layer 1: no tool call is the model's "done"</td></tr>
+        <tr><td>3</td><td>Subtype is <code>success</code>, no limit hit</td><td>Layer 2: no limit fired</td></tr>
+        <tr><td>4</td><td>Turn 3's test output backs the claim</td><td>M1: trust ground truth, not the sentence</td></tr>
+      </table>
+      <p><strong>The result:</strong> the model ended it, and the test run in turn 3 confirms it is done. (Example from <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a>.)</p>
+    </div>
+
+    <div class="check">
+      <span class="label">Your turn</span>
+      <p><strong>The problem:</strong> same task, run with <code>max_turns=3</code>.</p>
+      <ul><li>Turn 1: Bash <code>npm test</code> (3 failures)</li><li>Turn 2: Read two files</li><li>Turn 3: Edit, then <code>npm test</code> (all pass)</li></ul>
+      <table>
+        <tr><th>Step</th><th>What happens</th><th>Why</th></tr>
+        <tr><td>1</td><td>Turns 1 to 3 call tools, so the loop continues</td><td>Layer 1: tool calls keep it going</td></tr>
+        <tr><td>2</td><td class="blank">Is there a turn 4? Decide.</td><td class="blank">Which layer?</td></tr>
+        <tr><td>3</td><td class="blank">Which subtype comes back?</td><td class="blank">Which layer?</td></tr>
+        <tr><td>4</td><td class="blank">Is the code fixed? Is there a final answer?</td><td class="blank">Which idea?</td></tr>
+      </table>
+      <details>
+        <summary>Show a solution</summary>
+        <table>
+          <tr><th>Step</th><th>What happens</th><th>Why</th></tr>
+          <tr><td>1</td><td>Turns 1 to 3 call tools, so the loop continues</td><td>Layer 1</td></tr>
+          <tr><td>2</td><td>No turn 4: 3 tool turns used all 3 turns</td><td>Layer 2: cap needs tool turns + 1</td></tr>
+          <tr><td>3</td><td><code>error_max_turns</code></td><td>Layer 2: a limit ended it</td></tr>
+          <tr><td>4</td><td>The code is fixed (tests passed in turn 3), but there is no <code>result</code> text</td><td>A limit stop says nothing either way; check the ground truth</td></tr>
+        </table>
+      </details>
+    </div>
+  </section>
+
+  <section id="summary">
+    <h2>Summary <span class="section-time">1 min</span></h2>
+    <div class="box summary">
+      <ul>
+        <li>The loop runs while the model asks for tools; a reply with no tool call is the model's "done".</li>
+        <li>The model's "done" is a belief. Verify with ground truth: tests, files, outputs.</li>
+        <li>Limits (<code>max_tokens</code>, <code>pause_turn</code>, max turns, max budget) end the loop without meaning success.</li>
+        <li>A Stop hook can block a premature stop and send the agent back with a reason.</li>
+      </ul>
+      <p><strong>Say it in your own words:</strong> without looking, explain to a teammate why "the agent stopped" and "the task is done" are different statements.</p>
+    </div>
+  </section>
+
+  <section id="further" class="go-further">
+    <h2>Go further</h2>
+    <p><strong>Read next:</strong> <a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a> (Claude Agent SDK docs), the clearest single page on turns, limits and result subtypes.</p>
+    <ul>
+      <li><a href="https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons">Handling stop reasons</a>: what to do for each stop_reason.</li>
+      <li><a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents</a>: ground truth, checkpoints and stopping conditions.</li>
+      <li><a href="https://code.claude.com/docs/en/hooks">Hooks reference</a>: the Stop hook and its <code>decision</code> field.</li>
+    </ul>
+    <p><strong>Test it with others:</strong> in your agents course, compare with a classmate how your P3 tutor's bench runs ended; a run with no <code>run.json</code> is a loop that never reached a clean finish.</p>
+  </section>
+
+  <footer class="closing">
+    <p>Anything unclear? Ask me in the chat; I can explain any part again, another way, or go deeper.</p>
+    <p>A short quiz on this lesson is ready (quiz 0001): ask me for it when you want to check what stuck.</p>
+  </footer>
+
+</main>
+<script>
+  document.querySelectorAll("[data-check]").forEach(function (box) {
+    var buttons = box.querySelectorAll("button[data-correct]");
+    var out = box.querySelector(".feedback");
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        buttons.forEach(function (b) { b.classList.remove("right", "wrong"); });
+        var right = button.getAttribute("data-correct") === "true";
+        button.classList.add(right ? "right" : "wrong");
+        if (out) { out.textContent = (right ? "Yes. " : "Not quite. ") + (button.getAttribute("data-why") || ""); }
+      });
+    });
+  });
+</script>
+</body>
+</html>

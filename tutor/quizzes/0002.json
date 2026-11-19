@@ -1,0 +1,127 @@
+{
+  "id": "0002",
+  "objective": "O1",
+  "title": "How an agent decides it is done",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O1",
+      "stem": "In the canonical agentic loop from the Claude API docs, with no turn cap, which condition sends the loop around for another round?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The last tool call returned no error"
+        },
+        {
+          "id": "b",
+          "text": "The model's text says it is still working"
+        },
+        {
+          "id": "c",
+          "text": "The response's stop_reason is tool_use"
+        },
+        {
+          "id": "d",
+          "text": "The response's stop_reason is end_turn"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O1",
+      "stem": "Your agent's last response stops mid-sentence, and its stop_reason is max_tokens. What is the right reading of this ending?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The answer was cut off and is not finished"
+        },
+        {
+          "id": "b",
+          "text": "The model judged that the task was finished"
+        },
+        {
+          "id": "c",
+          "text": "The model declined to continue with the task"
+        },
+        {
+          "id": "d",
+          "text": "A server tool paused and must be resumed"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O1",
+      "stem": "Claude is running server tools such as web search, and the server-side loop reaches its iteration limit before the work is complete. Which stop_reason value comes back in the response?",
+      "options": [
+        {
+          "id": "a",
+          "text": "end_turn"
+        },
+        {
+          "id": "b",
+          "text": "max_tokens"
+        },
+        {
+          "id": "c",
+          "text": "tool_use"
+        },
+        {
+          "id": "d",
+          "text": "pause_turn"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O1",
+      "stem": "An Agent SDK run is started with max_turns=5. Claude uses four tool-calling turns and then writes a final text-only answer. No budget is set and nothing errors. How does the run end?",
+      "options": [
+        {
+          "id": "a",
+          "text": "error_max_turns, with no result text"
+        },
+        {
+          "id": "b",
+          "text": "error_max_turns, with a partial result"
+        },
+        {
+          "id": "c",
+          "text": "success, with the final answer in result"
+        },
+        {
+          "id": "d",
+          "text": "error_during_execution, with no result"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O1",
+      "stem": "A Claude Code agent ends its turn with end_turn and writes 'All tests pass', but the transcript shows it never ran the tests. What lets you automatically refuse that stop and send it back to work with a reason?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Raising max_turns so the agent can run longer"
+        },
+        {
+          "id": "b",
+          "text": "A Stop hook that returns decision block"
+        },
+        {
+          "id": "c",
+          "text": "Raising max_tokens so the answer can be longer"
+        },
+        {
+          "id": "d",
+          "text": "Nothing, since end_turn confirms the task succeeded"
+        }
+      ]
+    }
+  ]
+}

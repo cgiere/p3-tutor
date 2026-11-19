@@ -18,11 +18,38 @@ An example of a finished entry:
 - Kept in final: yes
 -->
 
-### TODO: the component's name
+### teach
 
-- Kind: TODO
-- Step added: TODO
-- Purpose: TODO
-- With and without: TODO
-- Review: TODO
+- Kind: skill
+- Step added: c1-skills
+- Purpose: Tutor needs this for shaping content and how it is delivered.
+- With and without: reviews/c1-skills.md, Round 1 (without) and Round 2 (with)
+- Review: The writing is more concise and the analogies don't feel forced. 
+- Kept in final: TODO
+
+### tutor
+
+- Kind: skill
+- Step added: c1-skills
+- Purpose: Deliver concepts with brevity and intention.
+- With and without: reviews/c1-skills.md, Round 3 (without) and Round 4 (with)
+- Review: Keeps the language direct and organizes learning mechanisms into succinct diagrams and mcq questions.
+- Kept in final: TODO
+
+### quiz
+
+- Kind: skill
+- Step added: c1-skills
+- Purpose: Assess the learner quickly by directly covering topics.
+- With and without: reviews/c1-skills.md, Round 7 (without) and Round 8 (with)
+- Review: Quizzes are quick and to the point with all questions being mcq.
+- Kept in final: TODO
+
+### grade
+
+- Kind: skill
+- Step added: c1-skills
+- Purpose: Give the learner direct feedback that is brief and informative.
+- With and without: reviews/c1-skills.md, Round 8 (without) and Round 9 (with)
+- Review: Limits the feedback to under 200 characters and cuts down on fragmented phrasing so it reads better.
 - Kept in final: TODO

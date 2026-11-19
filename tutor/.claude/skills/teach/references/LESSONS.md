@@ -39,9 +39,19 @@ When no length is asked for, use the one `PREFERENCES.md` implies, or 15 minutes
 
 1. **Opening:** the title, the time, the win in one sentence ("By the end of this lesson you can ..."), and one or two sentences tying it to the mission.
 2. **Warm-up:** one or two recall questions on earlier material from the learning records, for spacing, with the answers revealed on demand.
-3. **Sections, one idea each,** in a steady rhythm: explain only the knowledge the skill needs, in plain words; show a concrete example, drawn from the examples `PREFERENCES.md` says the learner relates to; then check with a practice question that gives immediate feedback.
+3. **Sections, one idea each,** in a steady rhythm: explain only the knowledge the skill needs, in plain words; show a concrete example, drawn from the mission's own setting; then check with a practice question that gives immediate feedback.
+   **Analogies:** an analogy from the domains `PREFERENCES.md` says the learner relates to is optional, never one per section.
+   Use one only where it is faithful: before you write it, list each part of the analogy beside the part of the concept it stands for, and check that the analogy's behavior matches the concept's (what changes, what persists, who decides).
+   If any part has no counterpart, or the analogy needs a sentence of excuses to work, drop it and let the concrete example carry the idea.
+   Keep to at most one or two analogies in a lesson, state the mapping in a line ("the recipe is the function; each cook who follows it is a call"), and never stack two analogies for the same idea.
 4. **Misconceptions where they bite:** name the common wrong ideas about this objective (from `NOTES.md`, the learning records, the keys' distractors and your sources), say why each is tempting, and show with an example why it is wrong.
 5. **Worked example, then practice:** a worked example step by step, then a similar task for the learner with the steps faded, and the solution on demand.
+   Give both the same visible structure, so the practice reads as the worked example with parts removed:
+   - **The problem:** the situation and the question, set apart in a box, with the givens as a short list.
+   - **The steps:** a numbered table or list with the same columns for every step, such as *Step*, *What happens*, *Why*; one action per step, and each "why" naming the idea from the lesson it applies.
+   - **The result:** the answer in one or two lines, and the one idea the example shows.
+   - **The practice:** a new problem in the same box, then the same step table with the first steps filled in and the later ones left as blank rows for the learner, each blank row saying what that step should decide.
+   - **The solution:** on demand, in the same table with every row filled, so the learner can compare row by row.
 6. **Summary:** the key ideas in three to five lines, and a prompt to explain the main idea in their own words before moving on.
 7. **Go further:** the primary source, the single most high-quality, high-trust resource you found, to read or watch next; two to four other sources you cited; and a community where they can test the skill (see Wisdom below).
 8. **Closing:** a reminder that they can ask you follow-up questions in the chat about anything unclear, and that a short quiz on this lesson is ready when they are.

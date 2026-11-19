@@ -1,0 +1,37 @@
+{
+  "quiz": "0002",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "wrong",
+      "misconception": null,
+      "feedback": "Not quite: the loop goes around again only while stop_reason is tool_use, because that means the model is waiting on a tool result. A tool that fails does not end the loop; your code sends the error back as the result."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "That's right, because max_tokens means the output hit your token limit, so the answer is truncated and not finished; the fix is to raise max_tokens or continue the response, never to treat it as the final answer."
+    },
+    {
+      "id": "q3",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "That's right: pause_turn means the server-side loop hit its iteration cap, 10 by default, so the work is not complete, and your code sends the response back unchanged so the model continues where it stopped."
+    },
+    {
+      "id": "q4",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "That's right, because max_turns counts each tool-calling turn plus one for the final text-only answer, so four tool turns and the answer turn make five and fit the cap; with max_turns=4 the run ends in error_max_turns."
+    },
+    {
+      "id": "q5",
+      "verdict": "wrong",
+      "misconception": "M1",
+      "feedback": "No: end_turn means only that the model believes it is done, and here the transcript shows it never ran the tests. A Stop hook that returns decision block with a reason refuses the stop and sends Claude back to run them."
+    }
+  ],
+  "summary": "3 of 5. You read limit stops correctly: max_tokens, pause_turn and the max_turns plus-one count. The gap is Layer 1: what keeps the loop going is stop_reason tool_use, and end_turn is only the model's belief that it is done (M1). Next, reread the lesson's Layer 1 and Layer 3 sections, then picture how a Stop hook would check one of your P3 tutor's \"done\" claims."
+}

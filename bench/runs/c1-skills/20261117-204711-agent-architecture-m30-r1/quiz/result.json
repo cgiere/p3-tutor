@@ -1,0 +1,128 @@
+{
+  "duration_api_ms": 58839,
+  "stop_reason": "end_turn",
+  "session_id": "1490dde7-568b-427f-985c-36e1494c1c27",
+  "total_cost_usd": 0.221533,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 28894,
+    "cache_read_input_tokens": 192990,
+    "output_tokens": 8663,
+    "output_tokens_details": {
+      "thinking_tokens": 2428
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28894,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 230,
+        "cache_read_input_tokens": 36470,
+        "cache_creation_input_tokens": 2988,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2988
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 14,
+      "outputTokens": 8663,
+      "cacheReadInputTokens": 192990,
+      "cacheCreationInputTokens": 28894,
+      "webSearchRequests": 0,
+      "costUSD": 0.221533,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2428,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 28894,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_0126DEsKf7NQgyqSyRzkFFLx",
+      "tool_input": {
+        "command": "cd /private/var/folders/8n/fftfcdc925b5xbktz1flb42h0000gn/T/p3-z3azeuve; cat > quizzes/0002.json <<'EOF'\n{\n  \"id\": \"0002\",\n  \"objective\": \"O4\",\n  \"title\": \"Workflows, agents and who owns the control flow\",\n  \"items\": [\n    {\n      \"id\": \"q1\",\n      \"type\": \"mcq\",\n      \"objective\": \"O4\",\n      \"stem\": \"What separates a workflow from an agent?\",\n      \"options\": [\n        {\"id\": \"a\", \"text\": \"In a workflow the model picks each step; in an agent the code fixes the steps in advance\"},\n        {\"id\": \"b\", \"text\": \"In a workflow the code fixes the steps in advance; in an agent the model picks each step\"},\n        {\"id\": \"c\", \"text\": \"A workflow never calls a language model at all, while an agent calls one at least once\"},\n        {\"id\": \"d\", \"text\": \"A workflow makes one tool call in total, while an agent is allowed to make several\"}\n      ]\n    },\n    {\n      \"id\": \"q2\",\n      \"type\": \"mcq\",\n      \"objective\": \"O4\",\n      \"stem\": \"The makerspace assistant's code always does these steps in this order: search the manuals for the student's question, pass the top three passages to the model, and return the answer the model writes. What is this design?\",\n      \"options\": [\n        {\"id\": \"a\", \"text\": \"An agent, because a language model writes the final answer the student reads\"},\n        {\"id\": \"b\", \"text\": \"An agent, because it uses a search tool to find passages in the manuals\"},\n        {\"id\": \"c\", \"text\": \"An agent, because it takes three separate steps instead of a single model call\"},\n        {\"id\": \"d\", \"text\": \"A workflow, because the code, not the model, fixes the order of the steps\"}\n      ]\n    },\n    {\n      \"id\": \"q3\",\n      \"type\": \"mcq\",\n      \"objective\": \"O4\",\n      \"stem\": \"A student writes: \\\"Book me any machine that can cut 6 mm acrylic, any time this week.\\\" The assistant has calendar, manual-search and booking tools, and after each result it decides which tool to call next, or to stop. Who owns the control flow here?\",\n      \"options\": [\n        {\"id\": \"a\", \"text\": \"The model, because it chooses the next action after seeing each result, so this is an agent\"},\n        {\"id\": \"b\", \"text\": \"The program, because it is the program that actually runs every tool the model asks for\"},\n        {\"id\": \"c\", \"text\": \"The developer, because they wrote the tool descriptions that the model reads each time\"},\n        {\"id\": \"d\", \"text\": \"Neither, because the loop simply repeats until a stopping condition ends it for them\"}\n      ]\n    },\n    {\n      \"id\": \"q4\",\n      \"type\": \"mcq\",\n      \"objective\": \"O4\",\n      \"stem\": \"After every booking, the assistant must check the student's training status, write the booking to the calendar, and email a confirmation. These three steps are the same every time. Which design fits best?\",\n      \"options\": [\n        {\"id\": \"a\", \"text\": \"An agent, because a model can handle any case and so is always the safer choice\"},\n        {\"id\": \"b\", \"text\": \"An agent, because a loop that picks each step costs less than the same fixed code\"},\n        {\"id\": \"c\", \"text\": \"A fixed workflow, because the steps are known in advance, so code can run them predictably and cheaply\"},\n        {\"id\": \"d\", \"text\": \"A fixed workflow, because code never makes mistakes while an agent will always get something wrong\"}\n      ]\n    },\n    {\n      \"id\": \"q5\",\n      \"type\": \"mcq\",\n      \"objective\": \"O4\",\n      \"stem\": \"Which of these requests would most justify giving the assistant agent-style control over its steps, rather than a fixed workflow?\",\n      \"options\": [\n        {\"id\": \"a\", \"text\": \"\\\"What are the laser cutter's opening hours?\\\", which is always one lookup in the manual\"},\n        {\"id\": \"b\", \"text\": \"\\\"Show me my bookings for today\\\", which is always one calendar query then a list\"},\n        {\"id\": \"c\", \"text\": \"\\\"Cancel my 3 pm booking today\\\", which is always a lookup, a delete and a confirmation\"},\n        {\"id\": \"d\", \"text\": \"\\\"Find a time this week when a 3D printer and a laser cutter are both free, then book it\\\"\"}\n      ]\n    },\n    {\n      \"id\": \"q6\",\n      \"type\": \"mcq\",\n      \"objective\": \"O4\",\n      \"stem\": \"At the design review, a teammate says: \\\"Make the whole assistant one agent, since agents are the most capable.\\\" With a small model budget, which reply is best?\",\n      \"options\": [\n        {\"id\": \"a\", \"text\": \"Agree, since the model can skip steps it doesn't need, so an agent costs no more than a workflow\"},\n        {\"id\": \"b\", \"text\": \"Use an agent only where the steps can't be known ahead, since every loop step is another model call and fixed parts run cheaper as workflows\"},\n        {\"id\": \"c\", \"text\": \"Disagree, since a workflow can't call a model, so it could never answer questions from the manuals\"},\n        {\"id\": \"d\", \"text\": \"Agree, since a fixed workflow would need rewriting whenever a student words a request differently\"}\n      ]\n    }\n  ]\n}\nEOF\ncat > keys/0002.json <<'EOF'\n{\n  \"id\": \"0002\",\n  \"items\": [\n    {\n      \"id\": \"q1\",\n      \"answer\": \"b\",\n      \"rationale\": \"The difference is who owns the control flow: in a workflow the code fixes the path in advance, in an agent the model decides the next step. Option a reverses the two, a workflow can include model calls (c), and counting tool calls (d) does not define either.\",\n      \"distractors\": {\"a\": \"M8\", \"c\": \"M7\", \"d\": \"M9\"}\n    },\n    {\n      \"id\": \"q2\",\n      \"answer\": \"d\",\n      \"rationale\": \"The order is fixed by the code, so it is a workflow, even though it uses retrieval and a model call inside one step. Using a model (a), using a search tool (b) or having several steps (c) does not make a system an agent; the model must decide what happens next.\",\n      \"distractors\": {\"a\": \"M7\", \"b\": \"M11\", \"c\": \"M9\"}\n    },\n    {\n      \"id\": \"q3\",\n      \"answer\": \"a\",\n      \"rationale\": \"The model picks the next action after each result, so it owns the control flow and the design is an agent. The program running the tools (b) and the developer writing the descriptions (c) do not decide the path, and the stopping condition (d) is a safeguard, not the owner of the flow.\",\n      \"distractors\": {\"b\": \"M8\", \"c\": \"M8\"}\n    },\n    {\n      \"id\": \"q4\",\n      \"answer\": \"c\",\n      \"rationale\": \"When the steps are known in advance and identical each time, a fixed workflow is the better choice: it is predictable, easier to test and cheaper, with no extra model calls to decide steps. Agents are not always safer (a), do not cost less than the fixed code (b), and code is not guaranteed error-free while agents always fail (d).\",\n      \"distractors\": {\"a\": \"M10\", \"b\": \"M14\"}\n    },\n    {\n      \"id\": \"q5\",\n      \"answer\": \"d\",\n      \"rationale\": \"Only d has a path that cannot be written down ahead: which machines, which days and how many lookups depend on what the calendar returns, so the model must choose steps as it goes. The other three are fixed sequences a workflow handles better.\"\n    },\n    {\n      \"id\": \"q6\",\n      \"answer\": \"b\",\n      \"rationale\": \"Agents earn their cost only where the steps can't be known ahead; each extra loop step is another model call, so the fixed parts are cheaper and more predictable as workflows. An agent is not free (a), a workflow can call a model inside a step (c), and a model inside a step already handles different wordings (d).\",\n      \"distractors\": {\"a\": \"M10\", \"c\": \"M7\", \"d\": \"M10\"}\n    }\n  ]\n}\nEOF\npython3 -c \"import json;[json.load(open(f)) for f in ['quizzes/0002.json','keys/0002.json']]\""
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 8,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "The quiz is at `quizzes/0002.json` and its key is at `keys/0002.json`. It has 6 items, all multiple choice, all on O4. I didn't run a JSON parse check, because the shell blocked that command. I did answer each item from its stem alone, without the key.\n\nThe quiz is ahead of the lessons: there is no O4 lesson yet, so I built it from the objective's wording and your makerspace assistant. It covers:\n- who owns the control flow\n- classifying a fixed pipeline and an open-ended request\n- when a fixed workflow is the better choice\n- how to answer \"make everything an agent\" at the design review\n\nYou can take it here in the chat, or hand in your answers to be graded.",
+  "ttft_ms": 1356,
+  "type": "result",
+  "duration_ms": 59993,
+  "uuid": "de2ddc28-a1af-4c72-b314-00d609c6b18d",
+  "ttft_stream_ms": 582,
+  "time_to_request_ms": 129,
+  "first_content_frame_ms": 583,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 14,
+      "outputTokens": 8663,
+      "cacheReadInputTokens": 192990,
+      "cacheCreationInputTokens": 28894,
+      "webSearchRequests": 0,
+      "costUSD": 0.221533,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2428,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 28894,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

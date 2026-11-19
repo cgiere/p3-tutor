@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 8382,
+  "stop_reason": "end_turn",
+  "session_id": "c21e696f-1bad-40c1-b975-362004c3618a",
+  "total_cost_usd": 0.0656527,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 13032,
+    "cache_read_input_tokens": 29967,
+    "output_tokens": 1052,
+    "output_tokens_details": {
+      "thinking_tokens": 173
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 13032,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 707,
+        "cache_read_input_tokens": 19403,
+        "cache_creation_input_tokens": 4193,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4193
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 1052,
+      "cacheReadInputTokens": 29967,
+      "cacheCreationInputTokens": 13032,
+      "webSearchRequests": 0,
+      "costUSD": 0.0656527,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 173,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 13032,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 5,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I don't give quiz answers before grading.\n\nHere's a method that works on any \"which option is right\" item:\n\n**Read what the stem actually asks**\n- Find the verb of the question: is it asking for the cause, the fix, the first step, or the best design?\n- Items often describe a symptom, then ask about something different, like the underlying reason or the remedy. Answer that one, not the symptom.\n\n**Restate it in your own words first**\n- Before you look at the options, write one sentence: \"The situation is ___, and they want me to pick the ___.\" Then read the options.\n\n**Test each option against the stem's facts**\n```\nstem facts ──► option A: does it fit ALL the facts?\n           ──► option B: does it fit ALL the facts?\n           ──► ...\n```\n- An option can be true in general and still not fit this stem. Drop any option that needs a fact the stem doesn't give.\n- If two options survive, look for the detail in the stem that only one of them accounts for.\n\n**Trap:** An option that sounds like a reasonable general practice but doesn't address what the stem asks. On any item, check \"does this answer the question?\" separately from \"is this true?\"\n\nNeither of your attempts at quiz 0001 has been graded yet. Once you hand one in for grading, we can go through q3 together, including why each wrong option is tempting.\n\n**One question back:** When you get stuck on an item like this, what's usually going on?\n- (i) Two options both seem true, and I can't tell which one the stem wants.\n- (ii) I'm not sure what the stem is asking.\n- (iii) I know the concept but can't map it onto the scenario.\n- (iv) I don't remember the concept at all.",
+  "ttft_ms": 986,
+  "type": "result",
+  "duration_ms": 8466,
+  "uuid": "a99e6221-67f4-4e8c-9b25-8e1ea9a456fc",
+  "ttft_stream_ms": 531,
+  "time_to_request_ms": 58,
+  "first_content_frame_ms": 531,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 1052,
+      "cacheReadInputTokens": 29967,
+      "cacheCreationInputTokens": 13032,
+      "webSearchRequests": 0,
+      "costUSD": 0.0656527,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 173,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 13032,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

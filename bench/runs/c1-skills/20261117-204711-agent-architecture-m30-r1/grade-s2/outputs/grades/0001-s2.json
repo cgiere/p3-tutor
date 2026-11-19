@@ -1,0 +1,19 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {"id": "q1", "verdict": "correct", "misconception": null,
+     "feedback": "That's right, because an agent is defined by its structure: the model picks an action, the program runs it, and the result returns for the next step. A longer prompt or bigger model only changes one call."},
+    {"id": "q2", "verdict": "correct", "misconception": null,
+     "feedback": "That's right, because the model only outputs a structured request naming check_calendar and its arguments. The program around it runs the tool and sends the result back, so the model never touches the booking system."},
+    {"id": "q3", "verdict": "wrong", "misconception": "M6",
+     "feedback": "No, an agent repeating the same failing edit gets no new information, so more time will not fix it. That belief is M6: a loop needs a stopping condition, such as a step limit that ends it and reports back."},
+    {"id": "q4", "verdict": "partial", "misconception": "M4",
+     "feedback": "Your count of 4 is right: three tool requests plus the final answer. But the model does not run any tool; it only requests one, and the program runs it. Your wording shows M4, the model runs tools itself."},
+    {"id": "q5", "verdict": "correct", "misconception": null,
+     "feedback": "That's right, because the program feeds the result back as the model's next input and calls it again, so the model can use it to choose its next step. The group-chat reply analogy fits that loop well."},
+    {"id": "q6", "verdict": "partial", "misconception": null,
+     "feedback": "Not quite: the name helps, but the model reads the whole description the program gives it, meaning the name, what the tool does and its parameters. A vague name like run_task would mislead without that text."}
+  ],
+  "summary": "You have the loop down: what makes an agent, what the model outputs for a tool call, and where results go. Fix two things: the program runs every tool and the model only requests it (M4), and a loop needs a stopping condition (M6). Next, redo q3 and q6, then write a one-line description for check_calendar."
+}

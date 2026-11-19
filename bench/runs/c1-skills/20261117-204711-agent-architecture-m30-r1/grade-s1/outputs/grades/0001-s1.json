@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "That's right, because an agent is defined by its structure: the model picks an action, the program runs it, and the result comes back for the next step. A longer prompt or bigger model only changes what one call can do."
+    },
+    {
+      "id": "q2",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "No, the model never opens the booking system; it only writes text, a request naming check_calendar with the machine and date as arguments. The program around it runs the tool and returns the result."
+    },
+    {
+      "id": "q3",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "That's right, because repeating the same edit against the same failing test adds nothing, so the safeguard is a stopping condition. A step limit ends the loop and hands the problem back to a person."
+    },
+    {
+      "id": "q4",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "Not quite: the model runs no tools; the program does. Each model call ends in one tool request or the final answer, so the three requests plus the answer make 4 calls, one per input the model receives."
+    },
+    {
+      "id": "q5",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "Not quite complete: sending the result back to the model is the right action, but you left out why. The program adds it to the model's next input and calls it again so the model can pick its next step."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": "M3",
+      "feedback": "You have the core right: the program gives the model each tool's name and description, and it picks the best fit. But the model keeps no choices from earlier sessions, because it has no automatic memory."
+    }
+  ],
+  "summary": "You have the loop down: you spotted what makes an agent and that a stopping condition is the right safeguard. The thing to fix is who does what: the model only writes requests, and the program runs every tool and calls the model again for each step. Next, redraw your laser cutter trace with two columns, model and program, and count the model calls."
+}

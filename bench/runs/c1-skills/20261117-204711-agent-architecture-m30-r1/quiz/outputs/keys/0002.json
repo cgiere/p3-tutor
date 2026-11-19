@@ -1,0 +1,40 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The difference is who owns the control flow: in a workflow the code fixes the path in advance, in an agent the model decides the next step. Option a reverses the two, a workflow can include model calls (c), and counting tool calls (d) does not define either.",
+      "distractors": {"a": "M8", "c": "M7", "d": "M9"}
+    },
+    {
+      "id": "q2",
+      "answer": "d",
+      "rationale": "The order is fixed by the code, so it is a workflow, even though it uses retrieval and a model call inside one step. Using a model (a), using a search tool (b) or having several steps (c) does not make a system an agent; the model must decide what happens next.",
+      "distractors": {"a": "M7", "b": "M11", "c": "M9"}
+    },
+    {
+      "id": "q3",
+      "answer": "a",
+      "rationale": "The model picks the next action after each result, so it owns the control flow and the design is an agent. The program running the tools (b) and the developer writing the descriptions (c) do not decide the path, and the stopping condition (d) is a safeguard, not the owner of the flow.",
+      "distractors": {"b": "M8", "c": "M8"}
+    },
+    {
+      "id": "q4",
+      "answer": "c",
+      "rationale": "When the steps are known in advance and identical each time, a fixed workflow is the better choice: it is predictable, easier to test and cheaper, with no extra model calls to decide steps. Agents are not always safer (a), do not cost less than the fixed code (b), and code is not guaranteed error-free while agents always fail (d).",
+      "distractors": {"a": "M10", "b": "M14"}
+    },
+    {
+      "id": "q5",
+      "answer": "d",
+      "rationale": "Only d has a path that cannot be written down ahead: which machines, which days and how many lookups depend on what the calendar returns, so the model must choose steps as it goes. The other three are fixed sequences a workflow handles better."
+    },
+    {
+      "id": "q6",
+      "answer": "b",
+      "rationale": "Agents earn their cost only where the steps can't be known ahead; each extra loop step is another model call, so the fixed parts are cheaper and more predictable as workflows. An agent is not free (a), a workflow can call a model inside a step (c), and a model inside a step already handles different wordings (d).",
+      "distractors": {"a": "M10", "c": "M7", "d": "M10"}
+    }
+  ]
+}

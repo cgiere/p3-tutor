@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 18599,
+  "stop_reason": "end_turn",
+  "session_id": "bf906385-f2be-49d0-9075-975624d8fecf",
+  "total_cost_usd": 0.0877944,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 14559,
+    "cache_read_input_tokens": 77424,
+    "output_tokens": 2180,
+    "output_tokens_details": {
+      "thinking_tokens": 848
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14559,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 652,
+        "cache_read_input_tokens": 23990,
+        "cache_creation_input_tokens": 1133,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1133
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2180,
+      "cacheReadInputTokens": 77424,
+      "cacheCreationInputTokens": 14559,
+      "webSearchRequests": 0,
+      "costUSD": 0.0877944,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 848,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 14559,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 7,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "**Tool calling in one line:** the model can only talk. It can't touch anything, so it writes out a request for an action, and someone else carries it out and reports back.\n\n**The analogy: a coach and a team manager**\n- The coach (the **model**) stands in a glass booth. They can only speak, and they can't step onto the field.\n- The team manager (your **program**) is on the sideline. They are the only one who can act: sub a player in, check the clock, call the ref.\n- The manager hands the coach a card listing the moves available, each with a one-line description (the **tool descriptions**). The coach can only pick from that card.\n- The coach says \"Sub in #23.\" That is the **tool call**: a precise request, not the action itself.\n- The manager does it and reports \"#23 is in, he's limping.\" That is the **tool result**.\n- The coach hears the report and decides the next move, or says \"we're done.\"\n\n```\nCoach (model)  --\"sub in #23\"-->  Manager (program)  --> Field\nCoach (model)  <--\"he's limping\"-- Manager (program)  <-- Field\n        repeat until the coach says \"final whistle\"\n```\n\n**Your makerspace assistant**\n- Student asks: \"Is the laser cutter free Friday?\"\n- Coach: \"Use the calendar move: laser cutter, Friday.\"\n- Manager checks the booking calendar and reports \"2–4pm open.\"\n- Coach tells the student the answer.\n\n**Why the card matters:** the coach picks moves by reading the descriptions. A vague description means a bad pick. That is why writing clear tool descriptions is one of your mission goals.\n\n**One question back:** In the analogy, who actually checks the booking calendar?\n- (i) The coach, since they made the decision\n- (ii) The manager\n- (iii) The card\n- (iv) Both, taking turns\n\n**Trap:** deciding what to do and doing it are separate jobs, and they belong to different parties.\n\nIf it still feels fuzzy, I can write a short lesson that walks one full request step by step.",
+  "ttft_ms": 1002,
+  "type": "result",
+  "duration_ms": 18743,
+  "uuid": "ed9587f8-1113-4e06-9ad5-54d2225ec96c",
+  "ttft_stream_ms": 552,
+  "time_to_request_ms": 82,
+  "first_content_frame_ms": 552,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2180,
+      "cacheReadInputTokens": 77424,
+      "cacheCreationInputTokens": 14559,
+      "webSearchRequests": 0,
+      "costUSD": 0.0877944,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 848,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 14559,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-01T20:43:47.429Z"
+}

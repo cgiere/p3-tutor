@@ -1,0 +1,42 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The model has no memory between calls; the program resends the setup plus all earlier requests and results every time. Answer a believes the model remembers by itself (M3), and c ignores that results must be sent back for the model to use them.",
+      "distractors": {"a": "M3", "c": "M3"}
+    },
+    {
+      "id": "q2",
+      "answer": "c",
+      "rationale": "A new session starts with an empty window, so the fact must be saved outside it and loaded back. A larger window does not carry anything over (M7), a system prompt cannot hold facts the model has never been given (M3), and resending all chats is huge, costly and noisy.",
+      "distractors": {"a": "M7", "b": "M3"}
+    },
+    {
+      "id": "q3",
+      "answer": 4350,
+      "tolerance": 0,
+      "rationale": "Call 1 input 1,000. Call 2 input 1,000 + 50 + 200 = 1,250. Call 3 input 1,250 + 50 + 800 = 2,100. Total 1,000 + 1,250 + 2,100 = 4,350. A wrong answer of 2,100 gives only the final context size and forgets that every call is billed separately."
+    },
+    {
+      "id": "q4",
+      "answer": "The chunk does not say which machine or material it belongs to, so search cannot tell; add a short note on its source (machine and section) to each chunk before indexing.",
+      "accepted": [
+        "It lost its context when split from the manual; prepend the machine and section to each chunk before indexing.",
+        "The chunk does not name the machine, so it matches any machine; label each chunk with its machine and section."
+      ],
+      "rationale": "Full credit needs the cause (the chunk is ambiguous alone because the surrounding context was lost) and a fix (add source context to each chunk before indexing). One half only is partial. Blaming the model size or window is wrong (M8 is the idea that a chunk means the same alone as in the manual)."
+    },
+    {
+      "id": "q5",
+      "answer": "Compact: summarize the conversation and continue in a fresh window; the risk is that the summary is lossy and drops details.",
+      "accepted": [
+        "Clear old tool results; the risk is losing information the model may still need.",
+        "Save notes to storage outside the window and reload them; the cost is deciding what to write, and missing notes mean lost facts.",
+        "Summarize earlier steps and restart with the summary; details may be lost."
+      ],
+      "rationale": "Any one of compaction, clearing old tool results or writing notes outside the window is right, with a correct cost: lost detail or extra work. Naming a method with no cost or risk is partial. Answering that a bigger window removes the problem ignores context rot and cost (M7)."
+    }
+  ]
+}
